@@ -192,6 +192,24 @@ namespace DAL
             return null;
         }
 
+        /// <summary>
+        /// Retourne la liste des 10 dérnier utilisateurs inscrit
+        /// </summary>
+        /// <returns>Une liste de 10 UtilisateursDal</returns>
+        public List<UtilisateurDAL> GetTenProfilUtilisateur()
+        {
+            List<UtilisateurDAL> lastTenUser = new List<UtilisateurDAL>();
+
+            var rep = ta.GetTenProfilUtilisateur();
+
+            foreach (DataRow utilisateur in rep)
+            {
+                lastTenUser.Add(new UtilisateurDAL(utilisateur));
+            }
+
+            return lastTenUser;
+
+        }
        
     }
 }
