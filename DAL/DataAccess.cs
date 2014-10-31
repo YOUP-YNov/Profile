@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.YoupDataSetTableAdapters;
 using DAL.Models;
+using AutoMapper;
 
 namespace DAL
 {
@@ -39,7 +40,8 @@ namespace DAL
             List<UtilisateurDAL> utilisateurs = new List<UtilisateurDAL>();
             foreach (DataRow row in rep.Rows)
             {
-                utilisateurs.Add(new UtilisateurDAL(row));
+                MyDALMapper.getMappingUsers();
+                utilisateurs.Add(Mapper.Map<DataRow, UtilisateurDAL>(row));
             }
             return utilisateurs;
         }
