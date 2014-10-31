@@ -171,10 +171,44 @@ namespace DAL
         {
             var rep = ta.GetUtilisateurById(utilisateur_id);
             if (rep.Rows.Count > 0)
-                return new UtilisateurDAL(rep.Rows[0]);
+            {
+                UtilisateurDAL utilisateur = new UtilisateurDAL(rep.Rows[0]);
+
+                var repamis = ta.GetAmisByUtilisateurId(utilisateur.Utilisateur_Id);
+                foreach (DataRow row in repamis)
+                {
+                    utilisateur.Amis.Add(new UtilisateurSmallDAL(row));
+                }
+
+                var repinteret = ta.GetCategoriesByIdUtilisateur(utilisateur.Utilisateur_Id);
+                foreach (DataRow cat in repinteret)
+                {
+                    utilisateur.Categories.Add(new Categorie(cat));
+                }
+
+            }
+                
             return null;
         }
 
+        /// <summary>
+        /// Désactivation d'un utilisateur à partir d'un Id
+        /// </summary>
+        /// <param name="utilisateur_id">Id d'un utilisateur</param>
+        /// <returns>Retourne un booléen qui vérifie le bon déroulement de la procédure</returns>
+        public bool DesactivationUtilisateur(int utilisateur_id)
+        {
+            try
+            {
+                ta.DesactivationUtilisateur(utilisateur_id);
+                return true;
+            }
+            catch (Exception E)
+            {
+                Debug.WriteLine(E.Message);
+                return false;
+            }
+        }
         /// <summary>
         /// Méthode d'auth d'un utilisateur
         /// </summary>

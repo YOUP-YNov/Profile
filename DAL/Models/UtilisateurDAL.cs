@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -26,6 +27,8 @@ namespace DAL
         public Nullable<bool> Partenaire { get; set; }
         public string Presentation { get; set; }
         public string Metier { get; set; }
+        public List<UtilisateurSmallDAL> Amis { get; set; }
+        public List<Categorie> Categories { get; set; }
 
         public UtilisateurDAL()
         {
@@ -34,6 +37,11 @@ namespace DAL
 
         public UtilisateurDAL(DataRow row)
         {
+            Amis = new List<UtilisateurSmallDAL>();
+            Categories = new List<Categorie>();
+
+
+
             try
             {
                 Utilisateur_Id = Convert.ToInt32(row["Utilisateur_Id"]);
