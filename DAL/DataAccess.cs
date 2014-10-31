@@ -193,5 +193,23 @@ namespace DAL
                 return false;
             }
         }
+        /// <summary>
+        /// Méthode d'auth d'un utilisateur
+        /// </summary>
+        /// <param name="email">Adresse EMail</param>
+        /// <param name="passwd">Mot de passe</param>
+        /// <returns>Un nouveau UtilisateurDAL</returns>
+        public UtilisateurDAL GetUserByEMailPasswd(string email, string passwd)
+        {
+            var rep = ta.GetUtilisateurByEmailPasswd(email, passwd);
+          
+            if (rep.Rows.Count > 0 )
+            {
+                return new UtilisateurDAL(rep.Rows[0]);
+            }
+            return null;
+        }
+
+       
     }
 }
