@@ -175,6 +175,23 @@ namespace DAL
             return null;
         }
 
-       
+        /// <summary>
+        /// Désactivation d'un utilisateur à partir d'un Id
+        /// </summary>
+        /// <param name="utilisateur_id">Id d'un utilisateur</param>
+        /// <returns>Retourne un booléen qui vérifie le bon déroulement de la procédure</returns>
+        public bool DesactivationUtilisateur(int utilisateur_id)
+        {
+            try
+            {
+                ta.DesactivationUtilisateur(utilisateur_id);
+                return true;
+            }
+            catch (Exception E)
+            {
+                Debug.WriteLine(E.Message);
+                return false;
+            }
+        }
     }
 }
