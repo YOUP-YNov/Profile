@@ -160,5 +160,13 @@ namespace DAL
 
             return reponse;
         }
+
+        public UtilisateurDAL GetUtilisateurById(int utilisateur_id)
+        {
+            var rep = ta.GetUtilisateurById(utilisateur_id);
+            if (rep.Rows.Count > 0)
+                return new UtilisateurDAL(rep.Rows[0]);
+            return null;
+        }
     }
 }
