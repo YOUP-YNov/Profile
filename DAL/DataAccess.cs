@@ -161,6 +161,11 @@ namespace DAL
             return reponse;
         }
 
+        /// <summary>
+        /// Récupère les données utilisateurs à partir d'un ID
+        /// </summary>
+        /// <param name="utilisateur_id">Id d'un utilisateur</param>
+        /// <returns>Objet utilisateur</returns>
         public UtilisateurDAL GetUtilisateurById(int utilisateur_id)
         {
             var rep = ta.GetUtilisateurById(utilisateur_id);
