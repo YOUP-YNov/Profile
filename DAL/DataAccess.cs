@@ -29,13 +29,18 @@ namespace DAL
         /// <summary>
         /// Returns all row into the UT_Utilisateur Table
         /// </summary>
-        /// <returns>DataTable</returns>
-        public UtilisateurDAL GetUtilisateurs()
+        /// <returns>List<UtilisateurDAL></returns>
+        public List<UtilisateurDAL> GetUtilisateurs()
         {
             var rep = ta.GetUtilisateurs();
             if (rep == null && rep.Rows.Count > 0)
                 return null;
-            return new UtilisateurDAL(rep);
+            List<UtilisateurDAL> utilisateurs = new List<UtilisateurDAL>();
+            foreach (DataRow row in rep.Rows)
+            {
+                utilisateurs.Add(new UtilisateurDAL(row));
+            }
+            return utilisateurs;
         }
 
         /// <summary>
@@ -58,27 +63,27 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
-        public string AddUtilisateur(string Pseudo,
-                    string MotDePasse,
-                    Nullable<DateTime> DateInscription,
-                    string Nom,
-                    string Prenom,
-                    Nullable<bool> Sexe,
-                    string AdresseMail,
-                    Nullable<DateTime> DateNaissance,
-                    string Ville,
-                    string CodePostal,
-                    string PhotoChemin,
-                    string Situation,
-                    Nullable<bool> Actif,
-                    Nullable<bool> Partenaire,
-                    string Presentation,
-                    string Metier)
+        public string AddUtilisateur(UtilisateurDAL Utilisateur)
         {
             int rep = 0;
             try
             {
-                rep = ta.Insert(Pseudo, MotDePasse, DateInscription, Nom, Prenom, Sexe, AdresseMail, DateNaissance, Ville, CodePostal, PhotoChemin, Situation, Actif, Partenaire, Presentation, Metier);
+                rep = ta.Insert(Utilisateur.Pseudo,
+                                Utilisateur.MotDePasse,
+                                Utilisateur.DateInscription,
+                                Utilisateur.Nom,
+                                Utilisateur.Prenom,
+                                Utilisateur.Sexe,
+                                Utilisateur.AdresseMail,
+                                Utilisateur.DateNaissance,
+                                Utilisateur.Ville,
+                                Utilisateur.CodePostal,
+                                Utilisateur.PhotoChemin,
+                                Utilisateur.Situation,
+                                Utilisateur.Actif,
+                                Utilisateur.Partenaire,
+                                Utilisateur.Presentation,
+                                Utilisateur.Metier);
             }
             catch (Exception E)
             {
@@ -107,12 +112,28 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
-        public string UpdateUtilisateur(UtilisateurDAL utilisateurDAL)
+        public string UpdateUtilisateur(UtilisateurDAL Utilisateur)
         {
             int rep = 0;
             try
             {
-                rep = ta.Update(utilisateurDAL.GetDataTable());
+                rep = ta.Update(Utilisateur.Utilisateur_Id,
+                                Utilisateur.Pseudo,
+                                Utilisateur.MotDePasse,
+                                Utilisateur.DateInscription,
+                                Utilisateur.Nom,
+                                Utilisateur.Prenom,
+                                Utilisateur.Sexe,
+                                Utilisateur.AdresseMail,
+                                Utilisateur.DateNaissance,
+                                Utilisateur.Ville,
+                                Utilisateur.CodePostal,
+                                Utilisateur.PhotoChemin,
+                                Utilisateur.Situation,
+                                Utilisateur.Actif,
+                                Utilisateur.Partenaire,
+                                Utilisateur.Presentation,
+                                Utilisateur.Metier);
             }
             catch (Exception E)
             {
