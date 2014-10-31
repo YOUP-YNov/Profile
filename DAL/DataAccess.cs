@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.YoupDataSetTableAdapters;
+using DAL.Models;
 
 namespace DAL
 {
@@ -63,6 +64,7 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
+       
         public string AddUtilisateur(UtilisateurDAL Utilisateur)
         {
             int rep = 0;
@@ -141,5 +143,107 @@ namespace DAL
             }
             return (rep == 1) ? "ok" : "ko";
         }
+
+        /// <summary>
+        /// Récupération des 5 premier utilisateurs qui participent le plus
+        /// </summary>
+        /// <returns>Liste de d5 UtilisateurSmallDAL</returns>
+        public List<UtilisateurSmallDAL> GetTopEvent()
+        {
+            List<UtilisateurSmallDAL> reponse = new List<UtilisateurSmallDAL>();
+
+            var rep = ta.GetTopEvent();
+
+            foreach (DataRow row in rep.Rows)
+            {
+                reponse.Add(new UtilisateurSmallDAL(row));
+            }
+
+            return reponse;
+        }
+
+        /// <summary>
+        /// Récupère les données utilisateurs à partir d'un ID
+        /// </summary>
+        /// <param name="utilisateur_id">Id d'un utilisateur</param>
+        /// <returns>Objet utilisateur</returns>
+        public UtilisateurDAL GetUtilisateurById(int utilisateur_id)
+        {
+            var rep = ta.GetUtilisateurById(utilisateur_id);
+            if (rep.Rows.Count > 0)
+            {
+                UtilisateurDAL utilisateur = new UtilisateurDAL(rep.Rows[0]);
+
+                var repamis = ta.GetAmisByUtilisateurId(utilisateur.Utilisateur_Id);
+                foreach (DataRow row in repamis)
+                {
+                    utilisateur.Amis.Add(new UtilisateurSmallDAL(row));
+                }
+
+                var repinteret = ta.GetCategoriesByIdUtilisateur(utilisateur.Utilisateur_Id);
+                foreach (DataRow cat in repinteret)
+                {
+                    utilisateur.Categories.Add(new Categorie(cat));
+                }
+
+            }
+                
+            return null;
+        }
+
+        /// <summary>
+        /// Désactivation d'un utilisateur à partir d'un Id
+        /// </summary>
+        /// <param name="utilisateur_id">Id d'un utilisateur</param>
+        /// <returns>Retourne un booléen qui vérifie le bon déroulement de la procédure</returns>
+        public bool DesactivationUtilisateur(int utilisateur_id)
+        {
+            try
+            {
+                ta.DesactivationUtilisateur(utilisateur_id);
+                return true;
+            }
+            catch (Exception E)
+            {
+                Debug.WriteLine(E.Message);
+                return false;
+            }
+        }
+        /// <summary>
+        /// Méthode d'auth d'un utilisateur
+        /// </summary>
+        /// <param name="email">Adresse EMail</param>
+        /// <param name="passwd">Mot de passe</param>
+        /// <returns>Un nouveau UtilisateurDAL</returns>
+        public UtilisateurDAL GetUserByEMailPasswd(string email, string passwd)
+        {
+            var rep = ta.GetUtilisateurByEmailPasswd(email, passwd);
+          
+            if (rep.Rows.Count > 0 )
+            {
+                return new UtilisateurDAL(rep.Rows[0]);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Retourne la liste des 10 dérnier utilisateurs inscrit
+        /// </summary>
+        /// <returns>Une liste de 10 UtilisateursDal</returns>
+        public List<UtilisateurDAL> GetTenProfilUtilisateur()
+        {
+            List<UtilisateurDAL> lastTenUser = new List<UtilisateurDAL>();
+
+            var rep = ta.GetTenProfilUtilisateur();
+
+            foreach (DataRow utilisateur in rep)
+            {
+                lastTenUser.Add(new UtilisateurDAL(utilisateur));
+            }
+
+            return lastTenUser;
+
+        }
+       
     }
 }
