@@ -171,7 +171,23 @@ namespace DAL
         {
             var rep = ta.GetUtilisateurById(utilisateur_id);
             if (rep.Rows.Count > 0)
-                return new UtilisateurDAL(rep.Rows[0]);
+            {
+                UtilisateurDAL utilisateur = new UtilisateurDAL(rep.Rows[0]);
+
+                var repamis = ta.GetAmisByUtilisateurId(utilisateur.Utilisateur_Id);
+                foreach (DataRow row in repamis)
+                {
+                    utilisateur.Amis.Add(new UtilisateurSmallDAL(row));
+                }
+
+                var repinteret = ta.GetCategoriesByIdUtilisateur(utilisateur.Utilisateur_Id);
+                foreach (DataRow cat in repinteret)
+                {
+                    utilisateur.Categories.Add(new Categorie(cat));
+                }
+
+            }
+                
             return null;
         }
 
