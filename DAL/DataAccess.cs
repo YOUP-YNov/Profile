@@ -64,6 +64,7 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
+       
         public string AddUtilisateur(UtilisateurDAL Utilisateur)
         {
             int rep = 0;
@@ -173,5 +174,7 @@ namespace DAL
                 return new UtilisateurDAL(rep.Rows[0]);
             return null;
         }
+
+       
     }
 }

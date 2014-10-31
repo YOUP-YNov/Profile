@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    class UtilisateurSmallDAL
+    public class UtilisateurSmallDAL
     {
 
         public int Utilisateur_Id { get; set; }
