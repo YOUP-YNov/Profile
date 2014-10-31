@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.YoupDataSetTableAdapters;
+using DAL.Models;
 
 namespace DAL
 {
@@ -140,6 +141,24 @@ namespace DAL
                 Debug.WriteLine(E.Message);
             }
             return (rep == 1) ? "ok" : "ko";
+        }
+
+        /// <summary>
+        /// Récupération des 5 premier utilisateurs qui participent le plus
+        /// </summary>
+        /// <returns>Liste de d5 UtilisateurSmallDAL</returns>
+        public List<UtilisateurSmallDAL> GetTopEvent()
+        {
+            List<UtilisateurSmallDAL> reponse = new List<UtilisateurSmallDAL>();
+
+            var rep = ta.GetTopEvent();
+
+            foreach (DataRow row in rep.Rows)
+            {
+                reponse.Add(new UtilisateurSmallDAL(row));
+            }
+
+            return reponse;
         }
     }
 }

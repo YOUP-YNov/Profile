@@ -37,22 +37,22 @@ namespace DAL
             try
             {
                 Utilisateur_Id = Convert.ToInt32(row["Utilisateur_Id"]);
-                Pseudo = row["Utilisateur_Id"] as string;
-                MotDePasse = row["Utilisateur_Id"] as string;
-                DateInscription = row["Utilisateur_Id"] as Nullable<DateTime>;
-                Nom = row["Utilisateur_Id"] as string;
-                Prenom = row["Utilisateur_Id"] as string;
-                Sexe = row["Utilisateur_Id"] as Nullable<bool>;
-                AdresseMail = row["Utilisateur_Id"] as string;
-                DateNaissance = row["Utilisateur_Id"] as Nullable<DateTime>;
-                Ville = row["Utilisateur_Id"] as string;
-                CodePostal = row["Utilisateur_Id"] as string;
-                PhotoChemin = row["Utilisateur_Id"] as string;
-                Situation = row["Utilisateur_Id"] as string;
-                Actif = row["Utilisateur_Id"] as Nullable<bool>;
-                Partenaire = row["Utilisateur_Id"] as Nullable<bool>;
-                Presentation = row["Utilisateur_Id"] as string;
-                Metier = row["Utilisateur_Id"] as string;
+                Pseudo = row["Pseudo"] as string;
+                MotDePasse = row["MotDePasse"] as string;
+                DateInscription = row["DateInscription"] as Nullable<DateTime>;
+                Nom = row["Nom"] as string;
+                Prenom = row["Prenom"] as string;
+                Sexe = row["Sexe"] as Nullable<bool>;
+                AdresseMail = row["AdresseMail"] as string;
+                DateNaissance = row["DateNaissance"] as Nullable<DateTime>;
+                Ville = row["Ville"] as string;
+                CodePostal = row["CodePostal"] as string;
+                PhotoChemin = row["PhotoChemin"] as string;
+                Situation = row["Situation"] as string;
+                Actif = row["Actif"] as Nullable<bool>;
+                Partenaire = row["Partenaire"] as Nullable<bool>;
+                Presentation = row["Presentation"] as string;
+                Metier = row["Metier"] as string;
             }
             catch (Exception E)
             {
