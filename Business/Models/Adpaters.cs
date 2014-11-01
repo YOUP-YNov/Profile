@@ -21,5 +21,14 @@ namespace Business.Models
             }
             return BuisinessUsers;
         }
+
+        public static UtilisateurBusiness toBuisiness(this UtilisateurDAL DALUsers)
+        {
+            Mapper.CreateMap<UtilisateurDAL, UtilisateurBusiness>();
+            UtilisateurBusiness BuisinessUsers = new UtilisateurBusiness();
+            BuisinessUsers = Mapper.Map<UtilisateurDAL,UtilisateurBusiness>(DALUsers);
+           
+            return BuisinessUsers;
+        }
     }
 }

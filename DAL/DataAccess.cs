@@ -172,9 +172,10 @@ namespace DAL
         public UtilisateurDAL GetUtilisateurById(int utilisateur_id)
         {
             var rep = ta.GetUtilisateurById(utilisateur_id);
+            UtilisateurDAL utilisateur = null;
             if (rep.Rows.Count > 0)
             {
-                UtilisateurDAL utilisateur = new UtilisateurDAL(rep.Rows[0]);
+                utilisateur = new UtilisateurDAL(rep.Rows[0]);
 
                 var repamis = ta.GetAmisByUtilisateurId(utilisateur.Utilisateur_Id);
                 foreach (DataRow row in repamis)
@@ -187,10 +188,11 @@ namespace DAL
                 {
                     utilisateur.Categories.Add(new Categorie(cat));
                 }
-
-            }
                 
-            return null;
+            }
+
+            return utilisateur;
+           
         }
 
         /// <summary>

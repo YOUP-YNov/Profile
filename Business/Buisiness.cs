@@ -19,5 +19,10 @@ namespace Business
             return DataAccess.GetUtilisateurs().toBuisiness();
         }
 
+        public UtilisateurBusiness GetUtilisateurById(int id)
+        {
+            return DataAccess.GetUtilisateurById(id).toBuisiness();
+        }
+
     }
 }
