@@ -72,5 +72,14 @@ namespace Business
         {
             return DataAccess.GetTenProfilUtilisateur();   
         }
+
+        /// <summary>
+        /// Fonction qui récupére la liste des utilisteurs participant le plus
+        /// </summary>
+        /// <returns>Une Liste de 5 UtilisateurSmall (données réduites)</returns>
+        public List<UtilisateurSmall> GetFiveMostParticipantUser()
+        {
+            return DataAccess.GetTopEvent();
+        }
     }
 }
