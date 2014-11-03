@@ -1,14 +1,13 @@
-﻿using DAL.Models;
+﻿using Business.Models;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
+using System.Web;
 
-namespace DAL
+namespace YOUP_Profile.Models
 {
-    public class UtilisateurDAL
+    public class Utilisateur
     {
         public int Utilisateur_Id { get; set; }
         public string Pseudo { get; set; }
@@ -31,35 +30,12 @@ namespace DAL
         public List<UtilisateurSmall> Amis { get; set; }
         public List<Categorie> Categories { get; set; }
 
-        public UtilisateurDAL()
+        public Utilisateur()
         {
 
         }
 
-        public UtilisateurDAL(DataRow row)
-        {
-            Utilisateur_Id = Convert.ToInt32(row["Utilisateur_Id"]);
-            Pseudo = row["Pseudo"] as string;
-            MotDePasse = row["MotDePasse"] as string;
-            DateInscription = row["DateInscription"] as Nullable<DateTime>;
-            Nom = row["Nom"] as string;
-            Prenom = row["Prenom"] as string;
-            Sexe = row["Sexe"] as Nullable<bool>;
-            AdresseMail = row["AdresseMail"] as string;
-            DateNaissance = row["DateNaissance"] as Nullable<DateTime>;
-            Ville = row["Ville"] as string;
-            CodePostal = row["CodePostal"] as string;
-            PhotoChemin = row["PhotoChemin"] as string;
-            Situation = row["Situation"] as string;
-            Actif = row["Actif"] as Nullable<bool>;
-            Partenaire = row["Partenaire"] as Nullable<bool>;
-            Presentation = row["Presentation"] as string;
-            Metier = row["Metier"] as string;
-            Amis = new List<UtilisateurSmall>();
-            Categories = new List<Categorie>();
-        }
-
-        public UtilisateurDAL(dynamic utilisateur)
+        public Utilisateur(UtilisateurBusiness utilisateur)
         {
             Utilisateur_Id = utilisateur.Utilisateur_Id;
             Pseudo = utilisateur.Pseudo;
@@ -78,6 +54,7 @@ namespace DAL
             Partenaire = utilisateur.Partenaire;
             Presentation = utilisateur.Presentation;
             Metier = utilisateur.Metier;
+            Token = utilisateur.Token;
             Amis = utilisateur.Amis;
             Categories = utilisateur.Categories;
         }

@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    public class UtilisateurSmallDAL
+    public class UtilisateurSmall
     {
 
         public int Utilisateur_Id { get; set; }
         public string Pseudo { get; set; }
         public string PhotoChemin { get; set; }
 
-        public UtilisateurSmallDAL()
+        public UtilisateurSmall()
         {
                 
         }
 
-        public UtilisateurSmallDAL(DataRow row)
+        public UtilisateurSmall(DataRow row)
         {
             Utilisateur_Id = Convert.ToInt32(row["Utilisateur_Id"]);
             Pseudo = row["Pseudo"] as string;

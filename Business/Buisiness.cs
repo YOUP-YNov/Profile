@@ -14,15 +14,37 @@ namespace Business
                 new Lazy<DataAccess>(() => new DataAccess());
         private static DataAccess DataAccess { get { return lazyDataAccess.Value; } }
 
-        public List<UtilisateurBusiness> GetUtilisateurs()
-        {
-            return DataAccess.GetUtilisateurs().toBuisiness();
-        }
 
+        /// <summary>
+        /// Recupere un utilisateur en fonction de son id
+        /// </summary>
+        /// <param name="id">utilisateur_id</param>
+        /// <returns>Utilisateur</returns>
         public UtilisateurBusiness GetUtilisateurById(int id)
         {
-            return DataAccess.GetUtilisateurById(id).toBuisiness();
+            return DataAccess.GetUtilisateurById(id).ToBuisiness();
         }
 
+        /// <summary>
+        /// Authentifie un utilisateur avec son email et son mot de passe
+        /// </summary>
+        /// <param name="email">Adresse email</param>
+        /// <param name="password">mot de passe en clair</param>
+        /// <param name="device">Optionel, le type de device</param>
+        /// <returns></returns>
+        public UtilisateurBusiness GetUtilisateurByEmailPassword(string email, string password, string device = null)
+        {
+            return DataAccess.GetUserByEMailPasswd(email, Encrypt.hashSHA256(password)).ToBuisiness();
+        }
+
+        /// <summary>
+        /// Creation d'un nouveau utilisateur
+        /// </summary>
+        /// <param name="utilisateur">Un utilisateur</param>
+        /// <returns>L'utilisateur creer, avec son id mit à jour</returns>
+        public UtilisateurBusiness InsertUtilisateur(UtilisateurBusiness utilisateur)
+        {
+            return DataAccess.AddUtilisateur(new UtilisateurDAL((dynamic)utilisateur)).ToBuisiness();
+        }
     }
 }

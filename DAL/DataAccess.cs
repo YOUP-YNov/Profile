@@ -5,9 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.YoupDataSetTableAdapters;
 using DAL.Models;
-using AutoMapper;
+using DAL.YoupDSTableAdapters;
 
 namespace DAL
 {
@@ -16,10 +15,21 @@ namespace DAL
     /// </summary>
     public class DataAccess
     {
-        private static readonly Lazy<UT_GetUtilisateursTableAdapter> lazyTa =
-                new Lazy<UT_GetUtilisateursTableAdapter>(() => new UT_GetUtilisateursTableAdapter());
-        private static UT_GetUtilisateursTableAdapter ta { get { return lazyTa.Value; } }
+        private static readonly Lazy<UtilisateurTA> lazyUtilisateurTA =
+                new Lazy<UtilisateurTA>(() => new UtilisateurTA());
+        private static UtilisateurTA UtilisateurTA { get { return lazyUtilisateurTA.Value; } }
 
+        private static readonly Lazy<CategorieTA> lazyCategorieTA =
+                new Lazy<CategorieTA>(() => new CategorieTA());
+        private static CategorieTA CategorieTA { get { return lazyCategorieTA.Value; } }
+
+        private static readonly Lazy<UtilisateurSmallTA> lazyUtilisateurSmallTA =
+                new Lazy<UtilisateurSmallTA>(() => new UtilisateurSmallTA());
+        private static UtilisateurSmallTA UtilisateurSmallTA { get { return lazyUtilisateurSmallTA.Value; } }
+
+        private static readonly Lazy<TokenTA> lazyTokenTA =
+                new Lazy<TokenTA>(() => new TokenTA());
+        private static TokenTA TokenTA { get { return lazyTokenTA.Value; } }
 
         /// <summary>
         /// Classe accedant aux données qui sont stockées en BDD SQL Server
@@ -28,23 +38,23 @@ namespace DAL
         {
         }
 
-        /// <summary>
-        /// Returns all row into the UT_Utilisateur Table
-        /// </summary>
-        /// <returns>List<UtilisateurDAL></returns>
-        public List<UtilisateurDAL> GetUtilisateurs()
-        {
-            var rep = ta.GetUtilisateurs();
-            if (rep == null && rep.Rows.Count > 0)
-                return null;
-            List<UtilisateurDAL> utilisateurs = new List<UtilisateurDAL>();
-            foreach (DataRow row in rep.Rows)
-            {
-                MyDALMapper.getMappingUsers();
-                utilisateurs.Add(Mapper.Map<DataRow, UtilisateurDAL>(row));
-            }
-            return utilisateurs;
-        }
+        ///// <summary>
+        ///// Returns all row into the UT_Utilisateur Table
+        ///// </summary>
+        ///// <returns>List<UtilisateurDAL></returns>
+        //public List<UtilisateurDAL> GetUtilisateurs()
+        //{
+        //    var rep = ta.GetUtilisateurs();
+        //    if (rep == null && rep.Rows.Count > 0)
+        //        return null;
+        //    List<UtilisateurDAL> utilisateurs = new List<UtilisateurDAL>();
+        //    foreach (DataRow row in rep.Rows)
+        //    {
+        //        MyDALMapper.getMappingUsers();
+        //        utilisateurs.Add(Mapper.Map<DataRow, UtilisateurDAL>(row));
+        //    }
+        //    return utilisateurs;
+        //}
 
         /// <summary>
         /// Insert a new row into UT_Utilisateur Table
@@ -67,12 +77,11 @@ namespace DAL
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
        
-        public string AddUtilisateur(UtilisateurDAL Utilisateur)
+        public UtilisateurDAL AddUtilisateur(UtilisateurDAL Utilisateur)
         {
-            int rep = 0;
             try
             {
-                rep = ta.Insert(Utilisateur.Pseudo,
+                UtilisateurTA.Insert(Utilisateur.Pseudo,
                                 Utilisateur.MotDePasse,
                                 Utilisateur.DateInscription,
                                 Utilisateur.Nom,
@@ -88,12 +97,17 @@ namespace DAL
                                 Utilisateur.Partenaire,
                                 Utilisateur.Presentation,
                                 Utilisateur.Metier);
+                var u = UtilisateurTA.GetUtilisateurByEmailPassword(Utilisateur.AdresseMail, Utilisateur.MotDePasse);
+                if (u.Rows.Count > 0)
+                    return new UtilisateurDAL(u.Rows[0]);
+                else
+                    return null;
             }
             catch (Exception E)
             {
                 Debug.WriteLine(E.Message);
             }
-            return (rep == 1) ? "ok" : "ko";
+            return null;
         }
         /// <summary>
         /// Update a row of UT_Utilisateur Table
@@ -116,12 +130,11 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
-        public string UpdateUtilisateur(UtilisateurDAL Utilisateur)
+        public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur)
         {
-            int rep = 0;
             try
             {
-                rep = ta.Update(Utilisateur.Utilisateur_Id,
+                UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
                                 Utilisateur.Pseudo,
                                 Utilisateur.MotDePasse,
                                 Utilisateur.DateInscription,
@@ -138,27 +151,32 @@ namespace DAL
                                 Utilisateur.Partenaire,
                                 Utilisateur.Presentation,
                                 Utilisateur.Metier);
+                var u = UtilisateurTA.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+                if (u.Rows.Count > 0)
+                    return new UtilisateurDAL(u.Rows[0]);
+                else
+                    return null;
             }
             catch (Exception E)
             {
                 Debug.WriteLine(E.Message);
             }
-            return (rep == 1) ? "ok" : "ko";
+            return null;
         }
 
         /// <summary>
         /// Récupération des 5 premier utilisateurs qui participent le plus
         /// </summary>
         /// <returns>Liste de d5 UtilisateurSmallDAL</returns>
-        public List<UtilisateurSmallDAL> GetTopEvent()
+        public List<UtilisateurSmall> GetTopEvent()
         {
-            List<UtilisateurSmallDAL> reponse = new List<UtilisateurSmallDAL>();
+            List<UtilisateurSmall> reponse = new List<UtilisateurSmall>();
 
-            var rep = ta.GetTopEvent();
+            var rep = UtilisateurSmallTA.GetTopFiveEvent();
 
             foreach (DataRow row in rep.Rows)
             {
-                reponse.Add(new UtilisateurSmallDAL(row));
+                reponse.Add(new UtilisateurSmall(row));
             }
 
             return reponse;
@@ -171,28 +189,27 @@ namespace DAL
         /// <returns>Objet utilisateur</returns>
         public UtilisateurDAL GetUtilisateurById(int utilisateur_id)
         {
-            var rep = ta.GetUtilisateurById(utilisateur_id);
+            var rep = UtilisateurTA.GetUtilisateurById(utilisateur_id);
             UtilisateurDAL utilisateur = null;
             if (rep.Rows.Count > 0)
             {
                 utilisateur = new UtilisateurDAL(rep.Rows[0]);
 
-                var repamis = ta.GetAmisByUtilisateurId(utilisateur.Utilisateur_Id);
+                var repamis = UtilisateurSmallTA.GetAmisByUtilisateur(utilisateur.Utilisateur_Id);
                 foreach (DataRow row in repamis)
                 {
-                    utilisateur.Amis.Add(new UtilisateurSmallDAL(row));
+                    utilisateur.Amis = utilisateur.Amis ?? new List<UtilisateurSmall>();
+                    utilisateur.Amis.Add(new UtilisateurSmall(row));
                 }
 
-                var repinteret = ta.GetCategoriesByIdUtilisateur(utilisateur.Utilisateur_Id);
+                var repinteret = CategorieTA.GetCategorieByUtilisateur(utilisateur.Utilisateur_Id);
                 foreach (DataRow cat in repinteret)
                 {
+                    utilisateur.Categories = utilisateur.Categories ?? new List<Categorie>();
                     utilisateur.Categories.Add(new Categorie(cat));
                 }
-                
             }
-
             return utilisateur;
-           
         }
 
         /// <summary>
@@ -204,7 +221,7 @@ namespace DAL
         {
             try
             {
-                ta.DesactivationUtilisateur(utilisateur_id);
+                UtilisateurTA.DesactivationUtilisateur(utilisateur_id);
                 return true;
             }
             catch (Exception E)
@@ -217,15 +234,18 @@ namespace DAL
         /// Méthode d'auth d'un utilisateur
         /// </summary>
         /// <param name="email">Adresse EMail</param>
-        /// <param name="passwd">Mot de passe</param>
+        /// <param name="passwd">Mot de passe hasher</param>
         /// <returns>Un nouveau UtilisateurDAL</returns>
         public UtilisateurDAL GetUserByEMailPasswd(string email, string passwd)
         {
-            var rep = ta.GetUtilisateurByEmailPasswd(email, passwd);
+            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passwd);
           
             if (rep.Rows.Count > 0 )
             {
-                return new UtilisateurDAL(rep.Rows[0]);
+                var user = new UtilisateurDAL(rep.Rows[0]);
+                user.Token = Guid.NewGuid().ToString();
+                TokenTA.Insert(user.Utilisateur_Id,user.Token, DateTime.Now.AddDays(10));
+                return user;
             }
             return null;
         }
@@ -234,15 +254,15 @@ namespace DAL
         /// Retourne la liste des 10 dérnier utilisateurs inscrit
         /// </summary>
         /// <returns>Une liste de 10 UtilisateursDal</returns>
-        public List<UtilisateurDAL> GetTenProfilUtilisateur()
+        public List<UtilisateurSmall> GetTenProfilUtilisateur()
         {
-            List<UtilisateurDAL> lastTenUser = new List<UtilisateurDAL>();
+            List<UtilisateurSmall> lastTenUser = new List<UtilisateurSmall>();
 
-            var rep = ta.GetTenProfilUtilisateur();
+            var rep = UtilisateurSmallTA.GetTopTenUtilisateurs();
 
             foreach (DataRow utilisateur in rep)
             {
-                lastTenUser.Add(new UtilisateurDAL(utilisateur));
+                lastTenUser.Add(new UtilisateurSmall(utilisateur));
             }
 
             return lastTenUser;

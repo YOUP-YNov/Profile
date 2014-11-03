@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,46 +41,43 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="Models\Categorie.cs" />
-    <Compile Include="Models\MyDALMapper.cs" />
     <Compile Include="Models\UtilisateurDAL.cs" />
-    <Compile Include="Models\UtilisateurSmallDAL.cs" />
+    <Compile Include="Models\UtilisateurSmall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="YoupDataSet.cs">
-      <DependentUpon>YoupDataSet.xsd</DependentUpon>
+    <Compile Include="YoupDS.cs">
+      <DependentUpon>YoupDS.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="YoupDataSet.Designer.cs">
+    <Compile Include="YoupDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>YoupDataSet.xsd</DependentUpon>
+      <DependentUpon>YoupDS.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="YoupDataSet.xsc">
-      <DependentUpon>YoupDataSet.xsd</DependentUpon>
+    <None Include="YoupDS.xsc">
+      <DependentUpon>YoupDS.xsd</DependentUpon>
     </None>
-    <None Include="YoupDataSet.xsd">
+    <None Include="YoupDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>YoupDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>YoupDS.Designer.cs</LastGenOutput>
     </None>
-    <None Include="YoupDataSet.xss">
-      <DependentUpon>YoupDataSet.xsd</DependentUpon>
+    <None Include="YoupDS.xss">
+      <DependentUpon>YoupDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
