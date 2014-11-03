@@ -46,5 +46,15 @@ namespace Business
         {
             return DataAccess.AddUtilisateur(new UtilisateurDAL((dynamic)utilisateur)).ToBuisiness();
         }
+
+        /// <summary>
+        /// Désactivation d'un utilisateur
+        /// </summary>
+        /// <param name="utilisateur_id">l'identifiant de l'utilisateur</param>
+        /// <returns>Un booléen</returns>
+        public bool DesactivationUtilisateur(int utilisateur_id)
+        {
+            return DataAccess.DesactivationUtilisateur(utilisateur_id);
+        }
     }
 }
