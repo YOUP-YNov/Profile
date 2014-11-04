@@ -26,5 +26,16 @@ namespace YOUP_Profile.Controllers
         {
             return Buisiness.GetUtilisateurByEmailPassword(Email, Pass, Device).ToExpo();
         }
+        
+        /// <summary>
+        /// Deconnexion volontaire de l'utilisateur
+        /// Suppression de son token
+        /// </summary>
+        /// <param name="token">Token de connexion de l'utilisateur</param>
+        /// <returns>true si il n'y a pas eu de probleme, false si une erreur</returns>
+        public bool Delete(Guid token)
+        {
+            return true;
+        }
     }
 }
