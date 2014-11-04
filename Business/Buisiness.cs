@@ -1,5 +1,6 @@
 ﻿using Business.Models;
 using DAL;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,30 @@ namespace Business
         public bool DesactivationUtilisateur(int utilisateur_id)
         {
             return DataAccess.DesactivationUtilisateur(utilisateur_id);
+        }
+
+        /// <summary>
+        /// Mise à jour des informations d'un utilisateur
+        /// </summary>
+        /// <param name="Utilisateur">Un utilisateur</param>
+        /// <returns>Un utilisateur mis à jour</returns>
+        public UtilisateurBusiness UpdateUtilisateur(UtilisateurBusiness Utilisateur)
+        {
+            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur)).ToBuisiness();
+        }
+
+        public List<UtilisateurSmall> GetTenProfilUtilisateur()
+        {
+            return DataAccess.GetTenProfilUtilisateur();   
+        }
+
+        /// <summary>
+        /// Fonction qui récupére la liste des utilisteurs participant le plus
+        /// </summary>
+        /// <returns>Une Liste de 5 UtilisateurSmall (données réduites)</returns>
+        public List<UtilisateurSmall> GetFiveMostParticipantUser()
+        {
+            return DataAccess.GetTopEvent();
         }
     }
 }
