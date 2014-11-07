@@ -152,6 +152,7 @@
     <Compile Include="Controllers\CategorieController.cs" />
     <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvitEventController.cs" />
     <Compile Include="Controllers\TopFiveUserController.cs" />
     <Compile Include="Controllers\TopTenUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
