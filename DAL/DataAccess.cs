@@ -30,7 +30,6 @@ namespace DAL
         private static readonly Lazy<TokenTA> lazyTokenTA =
                 new Lazy<TokenTA>(() => new TokenTA());
         private static TokenTA TokenTA { get { return lazyTokenTA.Value; } }
-
         /// <summary>
         /// Classe accedant aux données qui sont stockées en BDD SQL Server
         /// </summary>
@@ -182,6 +181,32 @@ namespace DAL
             return reponse;
         }
 
+        public bool AddFriendByIdUtilisateur(int id_utilisateur, int id_ami)
+        {
+            try
+            {
+                UtilisateurTA.AddFriend(id_utilisateur, id_ami);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool RemoveFriendByIdUtilisateur(int id_utilisateur, int id_ami)
+        {
+            try
+            {
+                UtilisateurTA.RemoveFriend(id_utilisateur, id_ami);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Récupère les données utilisateurs à partir d'un ID
         /// </summary>
@@ -267,7 +292,6 @@ namespace DAL
 
             return lastTenUser;
 
-        }
-       
+        }       
     }
 }
