@@ -22,7 +22,7 @@ namespace YOUP_Profile.Controllers
         /// <returns>Une liste de 5 UtilisateurSmall</returns>
         public IEnumerable<UtilisateurSmall> Get()
         {
-            return null;
+            return Buisiness.GetFiveMostParticipantUser();
         }
 
         /// <summary>
