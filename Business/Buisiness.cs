@@ -59,13 +59,54 @@ namespace Business
         }
 
         /// <summary>
+        /// Ajout d'un ami
+        /// </summary>
+        /// <param name="id_utilisateur">l'identifiant de l'utilisateur</param>
+        /// <param name="id_ami">l'identifiant de l'utilisateur ami</param>
+        /// <returns>Un booléen</returns>
+        public bool AddFriend(int id_utilisateur, int id_ami)
+        {
+            try
+            {
+                DataAccess.AddFriendByIdUtilisateur(id_utilisateur, id_ami);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Suppression d'un ami
+        /// </summary>
+        /// <param name="id_utilisateur">l'identifiant de l'utilisateur</param>
+        /// <param name="id_ami">l'identifiant de l'utilisateur ami</param>
+        /// <returns>Un booléen</returns>
+        public bool RemoveFriend(int id_utilisateur, int id_ami)
+        {
+            try
+            {
+                DataAccess.RemoveFriendByIdUtilisateur(id_utilisateur, id_ami);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Mise à jour des informations d'un utilisateur
         /// </summary>
         /// <param name="Utilisateur">Un utilisateur</param>
         /// <returns>Un utilisateur mis à jour</returns>
         public UtilisateurBusiness UpdateUtilisateur(UtilisateurBusiness Utilisateur)
         {
-            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur)).ToBuisiness();
+            var uInBase = DataAccess.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+
+            bool updatePass = Utilisateur.MotDePasse == uInBase.MotDePasse;
+            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass).ToBuisiness();
         }
 
         public List<UtilisateurSmall> GetTenProfilUtilisateur()
@@ -80,6 +121,16 @@ namespace Business
         public List<UtilisateurSmall> GetFiveMostParticipantUser()
         {
             return DataAccess.GetTopEvent();
+        }
+
+        /// <summary>
+        /// Fonction qui récupére la liste des notes d'un utilisateur
+        /// </summary>
+        /// <param name="user_id">ID de l'utilisateur</param>
+        /// <returns>Liste de NoteUser</returns>
+        public List<NoteUser> GetNoteUser(int user_id) 
+        {
+            return DataAccess.GetNoteUser(user_id);
         }
     }
 }

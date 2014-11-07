@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="Buisiness.cs" />
     <Compile Include="Models\Adapters\Adpaters.cs" />
-    <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\UtilisateurBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
