@@ -2739,19 +2739,17 @@ namespace DAL.YoupDSTableAdapters {
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
-        
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual YoupDS.UT_UtilisateurDataTable GetUtilisateurByToken(global::System.Nullable<global::System.Guid> Token) {
+        public virtual YoupDS.UT_UtilisateurDataTable GetUtilisateurByToken(global::System.Nullable<global::System.Guid> Token)
+        {
             this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((Token.HasValue == true)) {
+            if ((Token.HasValue == true))
+            {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.Guid)(Token.Value));
-        public virtual YoupDS.UT_UtilisateurDataTable GetUtilisateurByToken(string Token) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((Token == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
