@@ -97,6 +97,26 @@ namespace Business
         }
 
         /// <summary>
+        /// Invitation d'un utilisateur à un evenement par un utrilisateur
+        /// </summary>
+        /// <param name="event_id"> id de l'evenement</param>
+        /// <param name="invit_id"> id de l'utilisateur invité</param>
+        /// <param name="user_id"> id de l'utilisateur invitant</param>
+        /// <returns>Un booléen</returns>
+        public bool GetInvitEvent(int event_id, int user_id,int invit_id)
+        {
+            try
+            {
+                DataAccess.GetInvitEvent(event_id, user_id, invit_id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Mise à jour des informations d'un utilisateur
         /// </summary>
         /// <param name="Utilisateur">Un utilisateur</param>

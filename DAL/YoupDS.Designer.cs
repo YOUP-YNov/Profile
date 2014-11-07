@@ -3,8 +3,8 @@
 //     Ce code a été généré par un outil.
 //     Version du runtime :4.0.30319.18408
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
+//     Les modifications apportées à ce fichier peuvent provoquer un comportement incorrect et seront perdues si
+//     le code est régénéré.
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -1900,7 +1900,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.VilleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Ville\' in table \'UT_Utilisateur\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Ville\' dans la table \'UT_Utilisateur\' est DBNull.", e);
                     }
                 }
                 set {
@@ -1916,7 +1916,8 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.CodePostalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CodePostal\' in table \'UT_Utilisateur\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'CodePostal\' dans la table \'UT_Utilisateur\' est DBNull." +
+                                "", e);
                     }
                 }
                 set {
@@ -1932,7 +1933,8 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.PhotoCheminColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PhotoChemin\' in table \'UT_Utilisateur\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'PhotoChemin\' dans la table \'UT_Utilisateur\' est DBNull" +
+                                ".", e);
                     }
                 }
                 set {
@@ -1948,7 +1950,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.SituationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Situation\' in table \'UT_Utilisateur\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Situation\' dans la table \'UT_Utilisateur\' est DBNull.", e);
                     }
                 }
                 set {
@@ -1986,7 +1988,8 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.PresentationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Presentation\' in table \'UT_Utilisateur\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Presentation\' dans la table \'UT_Utilisateur\' est DBNul" +
+                                "l.", e);
                     }
                 }
                 set {
@@ -2002,7 +2005,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.MetierColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Metier\' in table \'UT_Utilisateur\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Metier\' dans la table \'UT_Utilisateur\' est DBNull.", e);
                     }
                 }
                 set {
@@ -2127,7 +2130,8 @@ namespace DAL {
                         return ((string)(this[this.tableUtilisateurSmall.PhotoCheminColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PhotoChemin\' in table \'UtilisateurSmall\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'PhotoChemin\' dans la table \'UtilisateurSmall\' est DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
@@ -2229,7 +2233,8 @@ namespace DAL {
                         return ((string)(this[this.tableCONNECT_Authentification.TokenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Token\' in table \'CONNECT_Authentification\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Token\' dans la table \'CONNECT_Authentification\' est DB" +
+                                "Null.", e);
                     }
                 }
                 set {
@@ -2256,7 +2261,8 @@ namespace DAL {
                         return ((global::System.Guid)(this[this.tableCONNECT_Authentification.Token1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Token1\' in table \'CONNECT_Authentification\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Token1\' dans la table \'CONNECT_Authentification\' est D" +
+                                "BNull.", e);
                     }
                 }
                 set {
@@ -3236,7 +3242,7 @@ namespace DAL.YoupDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "dbo.ps_UT_GetAmisByUtilisateur";
@@ -3245,14 +3251,22 @@ namespace DAL.YoupDSTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Utilisateur_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "dbo.ps_UT_GetTopEvent";
+            this._commandCollection[1].CommandText = "dbo.ps_UT_GetInvitationEvenenment";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@evenement_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@utilisateur_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@invite_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "dbo.ps_UT_GetTenProfilUtilisateur";
+            this._commandCollection[2].CommandText = "dbo.ps_UT_GetTopEvent";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "dbo.ps_UT_GetTenProfilUtilisateur";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3276,8 +3290,37 @@ namespace DAL.YoupDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual YoupDS.UtilisateurSmallDataTable GetTopFiveEvent() {
+        public virtual YoupDS.UtilisateurSmallDataTable GetInvitEvent(global::System.Nullable<int> evenement_id, global::System.Nullable<int> utilisateur_id, global::System.Nullable<int> invite_id) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((evenement_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(evenement_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((utilisateur_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(utilisateur_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((invite_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(invite_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            YoupDS.UtilisateurSmallDataTable dataTable = new YoupDS.UtilisateurSmallDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual YoupDS.UtilisateurSmallDataTable GetTopFiveEvent() {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             YoupDS.UtilisateurSmallDataTable dataTable = new YoupDS.UtilisateurSmallDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3288,7 +3331,7 @@ namespace DAL.YoupDSTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual YoupDS.UtilisateurSmallDataTable GetTopTenUtilisateurs() {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             YoupDS.UtilisateurSmallDataTable dataTable = new YoupDS.UtilisateurSmallDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3966,18 +4009,19 @@ namespace DAL.YoupDSTableAdapters {
             }
             if (((this._utilisateurTA != null) 
                         && (this.MatchTableAdapterConnection(this._utilisateurTA.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
+                throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
+                        "e chaîne de connexion.");
             }
             if (((this._tokenTA != null) 
                         && (this.MatchTableAdapterConnection(this._tokenTA.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
+                throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
+                        "e chaîne de connexion.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
-                throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
-                        "ger TableAdapter property to a valid TableAdapter instance.");
+                throw new global::System.ApplicationException("TableAdapterManager ne contient pas d\'informations de connexion. Définissez chaqu" +
+                        "e propriété TableAdapterManager TableAdapter à une instance valide de TableAdapt" +
+                        "er.");
             }
             bool workConnOpened = false;
             if (((workConnection.State & global::System.Data.ConnectionState.Broken) 
@@ -3990,8 +4034,9 @@ namespace DAL.YoupDSTableAdapters {
             }
             global::System.Data.IDbTransaction workTransaction = workConnection.BeginTransaction();
             if ((workTransaction == null)) {
-                throw new global::System.ApplicationException("The transaction cannot begin. The current data connection does not support transa" +
-                        "ctions or the current state is not allowing the transaction to begin.");
+                throw new global::System.ApplicationException("La transaction ne peut pas commencer. La connexion de données actuelle ne prend p" +
+                        "as en charge les transactions ou l\'état actuel n\'autorise pas le début de la tra" +
+                        "nsaction.");
             }
             global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
             global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();

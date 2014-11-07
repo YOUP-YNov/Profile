@@ -314,6 +314,17 @@ namespace DAL
             return null;
         }
 
+        public bool GetInvitEvent(int event_id, int user_id, int invit_id)
+        {
+            try{
+                UtilisateurSmallTA.GetInvitEvent(event_id, user_id, invit_id);
+                return true;
+            }
+            catch{
+                return false;
+            }
+        }
+
         /// <summary>
         /// Retourne la liste des 10 dérnier utilisateurs inscrit
         /// </summary>
