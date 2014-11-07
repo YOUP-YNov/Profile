@@ -301,8 +301,7 @@ namespace DAL
         /// <returns>Un nouveau UtilisateurDAL</returns>
         public UtilisateurDAL GetUserByEMailPasswd(string email, string passwd)
         {
-            var passhashed = Encrypt.hashSHA256(passwd);
-            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passhashed);
+            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passwd);
           
             if (rep.Rows.Count > 0 )
             {
