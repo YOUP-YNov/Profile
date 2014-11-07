@@ -268,7 +268,7 @@ namespace DAL
             if (rep.Rows.Count > 0 )
             {
                 var user = new UtilisateurDAL(rep.Rows[0]);
-                user.Token = Guid.NewGuid().ToString();
+                user.Token = Guid.NewGuid();
                 TokenTA.Insert(user.Utilisateur_Id,user.Token, DateTime.Now.AddDays(10));
                 return user;
             }

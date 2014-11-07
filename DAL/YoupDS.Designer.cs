@@ -1472,6 +1472,8 @@ namespace DAL {
             
             private global::System.Data.DataColumn columnDateValidation;
             
+            private global::System.Data.DataColumn columnToken1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CONNECT_AuthentificationDataTable() {
@@ -1539,6 +1541,14 @@ namespace DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Token1Column {
+                get {
+                    return this.columnToken1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1574,13 +1584,14 @@ namespace DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CONNECT_AuthentificationRow AddCONNECT_AuthentificationRow(long Utilisateur_id, string Token, System.DateTime DateValidation) {
+            public CONNECT_AuthentificationRow AddCONNECT_AuthentificationRow(long Utilisateur_id, string Token, System.DateTime DateValidation, System.Guid Token1) {
                 CONNECT_AuthentificationRow rowCONNECT_AuthentificationRow = ((CONNECT_AuthentificationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Utilisateur_id,
                         Token,
-                        DateValidation};
+                        DateValidation,
+                        Token1};
                 rowCONNECT_AuthentificationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCONNECT_AuthentificationRow);
                 return rowCONNECT_AuthentificationRow;
@@ -1614,6 +1625,7 @@ namespace DAL {
                 this.columnUtilisateur_id = base.Columns["Utilisateur_id"];
                 this.columnToken = base.Columns["Token"];
                 this.columnDateValidation = base.Columns["DateValidation"];
+                this.columnToken1 = base.Columns["Token1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1627,6 +1639,8 @@ namespace DAL {
                 base.Columns.Add(this.columnToken);
                 this.columnDateValidation = new global::System.Data.DataColumn("DateValidation", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateValidation);
+                this.columnToken1 = new global::System.Data.DataColumn("Token1", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnToken1);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnAuthentification_id}, true));
                 this.columnAuthentification_id.AutoIncrement = true;
@@ -1638,6 +1652,7 @@ namespace DAL {
                 this.columnUtilisateur_id.AllowDBNull = false;
                 this.columnToken.MaxLength = 100;
                 this.columnDateValidation.AllowDBNull = false;
+                this.columnToken1.Caption = "Token";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2240,6 +2255,23 @@ namespace DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.Guid Token1 {
+                get {
+                    try {
+                        return ((global::System.Guid)(this[this.tableCONNECT_Authentification.Token1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Token1\' dans la table \'CONNECT_Authentification\' est D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCONNECT_Authentification.Token1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTokenNull() {
                 return this.IsNull(this.tableCONNECT_Authentification.TokenColumn);
             }
@@ -2248,6 +2280,18 @@ namespace DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTokenNull() {
                 this[this.tableCONNECT_Authentification.TokenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsToken1Null() {
+                return this.IsNull(this.tableCONNECT_Authentification.Token1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetToken1Null() {
+                this[this.tableCONNECT_Authentification.Token1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -3543,8 +3587,8 @@ namespace DAL.YoupDSTableAdapters {
             tableMapping.DataSetTable = "CONNECT_Authentification";
             tableMapping.ColumnMappings.Add("Authentification_id", "Authentification_id");
             tableMapping.ColumnMappings.Add("Utilisateur_id", "Utilisateur_id");
-            tableMapping.ColumnMappings.Add("Token", "Token");
             tableMapping.ColumnMappings.Add("DateValidation", "DateValidation");
+            tableMapping.ColumnMappings.Add("Token", "Token1");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
@@ -3552,7 +3596,7 @@ namespace DAL.YoupDSTableAdapters {
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.StoredProcedure;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UtilisateurId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Token", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "Token", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Token", global::System.Data.SqlDbType.UniqueIdentifier, 16, global::System.Data.ParameterDirection.Input, 0, 0, "Token", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Expiration", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
@@ -3632,18 +3676,18 @@ namespace DAL.YoupDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> UtilisateurId, string Token, global::System.Nullable<global::System.DateTime> Expiration) {
+        public virtual int Insert(global::System.Nullable<int> UtilisateurId, global::System.Nullable<global::System.Guid> Token, global::System.Nullable<global::System.DateTime> Expiration) {
             if ((UtilisateurId.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((int)(UtilisateurId.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((Token == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            if ((Token.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((System.Guid)(Token.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Token));
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((Expiration.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(Expiration.Value));
