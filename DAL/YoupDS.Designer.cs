@@ -3,8 +3,8 @@
 //     Ce code a été généré par un outil.
 //     Version du runtime :4.0.30319.18408
 //
-//     Les modifications apportées à ce fichier peuvent provoquer un comportement incorrect et seront perdues si
-//     le code est régénéré.
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -1900,7 +1900,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.VilleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Ville\' dans la table \'UT_Utilisateur\' est DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Ville\' in table \'UT_Utilisateur\' is DBNull.", e);
                     }
                 }
                 set {
@@ -1916,8 +1916,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.CodePostalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'CodePostal\' dans la table \'UT_Utilisateur\' est DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CodePostal\' in table \'UT_Utilisateur\' is DBNull.", e);
                     }
                 }
                 set {
@@ -1933,8 +1932,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.PhotoCheminColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'PhotoChemin\' dans la table \'UT_Utilisateur\' est DBNull" +
-                                ".", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PhotoChemin\' in table \'UT_Utilisateur\' is DBNull.", e);
                     }
                 }
                 set {
@@ -1950,7 +1948,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.SituationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Situation\' dans la table \'UT_Utilisateur\' est DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Situation\' in table \'UT_Utilisateur\' is DBNull.", e);
                     }
                 }
                 set {
@@ -1988,8 +1986,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.PresentationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Presentation\' dans la table \'UT_Utilisateur\' est DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Presentation\' in table \'UT_Utilisateur\' is DBNull.", e);
                     }
                 }
                 set {
@@ -2005,7 +2002,7 @@ namespace DAL {
                         return ((string)(this[this.tableUT_Utilisateur.MetierColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Metier\' dans la table \'UT_Utilisateur\' est DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Metier\' in table \'UT_Utilisateur\' is DBNull.", e);
                     }
                 }
                 set {
@@ -2130,8 +2127,7 @@ namespace DAL {
                         return ((string)(this[this.tableUtilisateurSmall.PhotoCheminColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'PhotoChemin\' dans la table \'UtilisateurSmall\' est DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PhotoChemin\' in table \'UtilisateurSmall\' is DBNull.", e);
                     }
                 }
                 set {
@@ -2233,8 +2229,7 @@ namespace DAL {
                         return ((string)(this[this.tableCONNECT_Authentification.TokenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Token\' dans la table \'CONNECT_Authentification\' est DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Token\' in table \'CONNECT_Authentification\' is DBNull.", e);
                     }
                 }
                 set {
@@ -2261,8 +2256,7 @@ namespace DAL {
                         return ((global::System.Guid)(this[this.tableCONNECT_Authentification.Token1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Token1\' dans la table \'CONNECT_Authentification\' est D" +
-                                "BNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Token1\' in table \'CONNECT_Authentification\' is DBNull.", e);
                     }
                 }
                 set {
@@ -3972,19 +3966,18 @@ namespace DAL.YoupDSTableAdapters {
             }
             if (((this._utilisateurTA != null) 
                         && (this.MatchTableAdapterConnection(this._utilisateurTA.Connection) == false))) {
-                throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
-                        "e chaîne de connexion.");
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
             }
             if (((this._tokenTA != null) 
                         && (this.MatchTableAdapterConnection(this._tokenTA.Connection) == false))) {
-                throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
-                        "e chaîne de connexion.");
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
-                throw new global::System.ApplicationException("TableAdapterManager ne contient pas d\'informations de connexion. Définissez chaqu" +
-                        "e propriété TableAdapterManager TableAdapter à une instance valide de TableAdapt" +
-                        "er.");
+                throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
+                        "ger TableAdapter property to a valid TableAdapter instance.");
             }
             bool workConnOpened = false;
             if (((workConnection.State & global::System.Data.ConnectionState.Broken) 
@@ -3997,9 +3990,8 @@ namespace DAL.YoupDSTableAdapters {
             }
             global::System.Data.IDbTransaction workTransaction = workConnection.BeginTransaction();
             if ((workTransaction == null)) {
-                throw new global::System.ApplicationException("La transaction ne peut pas commencer. La connexion de données actuelle ne prend p" +
-                        "as en charge les transactions ou l\'état actuel n\'autorise pas le début de la tra" +
-                        "nsaction.");
+                throw new global::System.ApplicationException("The transaction cannot begin. The current data connection does not support transa" +
+                        "ctions or the current state is not allowing the transaction to begin.");
             }
             global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
             global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
