@@ -16,35 +16,53 @@ namespace YOUP_Profile.Controllers
         private static Buisiness Buisiness { get { return lazyBuisiness.Value; } }
         
         /// <summary>
-        /// Recupere un UtilisateurSmall par son id
+        /// retourne la liste d'ami d'un utilisateur par rapport à son id
         /// </summary>
         /// <param name="id">id de l'utilisateur</param>
-        /// <returns>un UtilisateurSmall</returns>
-        public UtilisateurSmall Get(int id)
+        /// <returns>une liste de UtilisateurSmall</returns>
+        public IEnumerable<UtilisateurSmall> Get(int id)
         {
-            return null;
+            try
+            {
+                return Buisiness.GetUtilisateurById(id).Amis;
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
         /// <summary>
         /// Fais une requete d'amis pour un utilisateur
         /// </summary>
-        /// <param name="utilisateur">Utilisateur que l'on veut demander en ami</param>
-        /// <param name="token">Le token de connexion</param>
+        /// <param name="ami_id"> id de l'ami à ajouter </param>
+        /// <param name="utilisateur_id"> id de l'utilisateur qui veut ajouter un ami</param>
         /// <returns>true si la demande à bien etait faite</returns>
-        public bool Post(UtilisateurSmall utilisateur, Guid token)
+        public bool Post(int utilisateur_id, int ami_id)
         {
-            return false;
+            try
+            {
+                Buisiness.AddFriend(utilisateur_id, ami_id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        /// <summary>
-        /// Accepte une requete d'amis
-        /// </summary>
-        /// <param name="utilisateur">L'utilisateur que l'on veut accepter</param>
-        /// <param name="token">Votre token de connexion</param>
-        /// <returns>UtilisateurSmall</returns>
-        public UtilisateurSmall Put(UtilisateurSmall utilisateur, Guid token)
+        public bool Delete(int utilisateur_id, int ami_id)
         {
-            return null;
+            try
+            {
+                Buisiness.RemoveFriend(utilisateur_id, ami_id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
