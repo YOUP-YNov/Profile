@@ -211,6 +211,10 @@ namespace DAL
             return reponse;
         }
 
+        /// <summary>
+        /// Ajout d'un ami par son id
+        /// </summary>
+        /// <returns>True si OK, False si KO</returns>
         public bool AddFriendByIdUtilisateur(int id_utilisateur, int id_ami)
         {
             try
@@ -224,6 +228,10 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// Retire un ami par son id
+        /// </summary>
+        /// <returns>True si OK, False si KO</returns>
         public bool RemoveFriendByIdUtilisateur(int id_utilisateur, int id_ami)
         {
             try
