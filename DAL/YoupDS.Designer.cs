@@ -3217,10 +3217,6 @@ namespace DAL.YoupDSTableAdapters {
             this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((Token.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.Guid)(Token.Value));
-        public virtual YoupDS.UT_UtilisateurDataTable GetUtilisateurByToken(string Token) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((Token == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;

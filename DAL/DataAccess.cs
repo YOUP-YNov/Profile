@@ -30,6 +30,10 @@ namespace DAL
         private static readonly Lazy<TokenTA> lazyTokenTA =
                 new Lazy<TokenTA>(() => new TokenTA());
         private static TokenTA TokenTA { get { return lazyTokenTA.Value; } }
+
+        //private static readonly Lazy<AppreciationTA> lazeyAppreciation =
+        //        new Lazy<AppreciationTA>(() => new AppreciationTA());
+        //private static UT_Appreciation_TA AppreciationTA { get { return lazeyAppreciation.Value; } }
         /// <summary>
         /// Classe accedant aux données qui sont stockées en BDD SQL Server
         /// </summary>
@@ -410,16 +414,17 @@ namespace DAL
         /// <returns>Liste de NoteUser</returns>
         public List<NoteUser> GetNoteUser(int user_id)
         {
-            List<NoteUser> listedenote = new List<NoteUser>();
+            //List<NoteUser> listedenote = new List<NoteUser>();
 
-            var rep = new UT_Appreciation_TA().GetNoteUser(user_id);
+            //var rep = 
 
-            foreach (DataRow row in rep)
-            {
-                listedenote.Add(new NoteUser(row));
-            }
+            //foreach (DataRow row in rep)
+            //{
+            //    listedenote.Add(new NoteUser(row));
+            //}
 
-            return listedenote;
+            //return listedenote;
+            return null;
         }
 
         /// <summary>

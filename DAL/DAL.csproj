@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\Encrypt.cs" />
+    <Compile Include="Models\NoteUser.cs" />
     <Compile Include="Models\UtilisateurDAL.cs" />
     <Compile Include="Models\UtilisateurSmall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,12 +51,26 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="YoupDS.cs">
+      <DependentUpon>YoupDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="YoupDS.Designer.cs">
+      <DependentUpon>YoupDS.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="YoupDS.xsc">
+      <DependentUpon>YoupDS.xsd</DependentUpon>
+    </None>
+    <None Include="YoupDS.xsd" />
+    <None Include="YoupDS.xss">
+      <DependentUpon>YoupDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
