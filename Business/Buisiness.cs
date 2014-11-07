@@ -122,6 +122,46 @@ namespace Business
         {
             return DataAccess.GetTopEvent();
         }
+        /// <summary>
+        /// Fonction qui récupère un utilisateur en fonction de son token
+        /// </summary>
+        /// <param name="token">le token de l'utilisateur</param>
+        /// <returns>Un utilisateur</returns>
+        public UtilisateurBusiness GetUtilisateurByToken(Guid token)
+        {
+            return DataAccess.GetUtilisateurByToken(token).ToBuisiness();
+        }
+
+        /// <summary>
+        /// Fonction qui ajoute une categorie à l'utilisateur
+        /// </summary>
+        /// <param name="user_id">l'identifiante de l'utilisateur</param>
+        /// <param name="cat_id">La categorie à ajouter à l'utilisteur</param>
+        public void AddCategorieByUser(int user_id,int cat_id)
+        {
+            DataAccess.AddCategoryByUser(user_id, cat_id);
+        }
+
+        /// <summary>
+        /// Retourne une categorie en fonction de son ID
+        /// </summary>
+        /// <param name="id">id de la categorie</param>
+        /// <returns>Une categorie</returns>
+        public Categorie GetCategoryById(int id)
+        {
+            return DataAccess.GetCategoryById(id);
+        }
+
+        /// <summary>
+        /// Supprime une categorie de l'utilisateur
+        /// </summary>
+        /// <param name="cat">Categorie</param>
+        /// <param name="token">Token de l'utilisateur</param>
+        /// <returns>un booleen</returns>
+        public bool DeleteCategoryByUser(Categorie cat, Guid token)
+        {
+            return DataAccess.DeleteCategoryUser(cat, token);
+        }
 
         /// <summary>
         /// Fonction qui récupére la liste des notes d'un utilisateur
