@@ -25,5 +25,17 @@ namespace DAL.Models
             Pseudo = row["Pseudo"] as string;
             PhotoChemin = row["PhotoChemin"] as string;
         }
+
+        public bool GetInvitEvent(int event_id, int user_id, int invit_id)
+        {
+            try
+            {
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

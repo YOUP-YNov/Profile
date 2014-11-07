@@ -97,13 +97,36 @@ namespace Business
         }
 
         /// <summary>
+        /// Invitation d'un utilisateur à un evenement par un utrilisateur
+        /// </summary>
+        /// <param name="event_id"> id de l'evenement</param>
+        /// <param name="invit_id"> id de l'utilisateur invité</param>
+        /// <param name="user_id"> id de l'utilisateur invitant</param>
+        /// <returns>Un booléen</returns>
+        public bool GetInvitEvent(int event_id, int user_id,int invit_id)
+        {
+            try
+            {
+                DataAccess.GetInvitEvent(event_id, user_id, invit_id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Mise à jour des informations d'un utilisateur
         /// </summary>
         /// <param name="Utilisateur">Un utilisateur</param>
         /// <returns>Un utilisateur mis à jour</returns>
         public UtilisateurBusiness UpdateUtilisateur(UtilisateurBusiness Utilisateur)
         {
-            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur)).ToBuisiness();
+            var uInBase = DataAccess.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+
+            bool updatePass = Utilisateur.MotDePasse == uInBase.MotDePasse;
+            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass).ToBuisiness();
         }
 
         public List<UtilisateurSmall> GetTenProfilUtilisateur()
@@ -118,6 +141,56 @@ namespace Business
         public List<UtilisateurSmall> GetFiveMostParticipantUser()
         {
             return DataAccess.GetTopEvent();
+        }
+        /// <summary>
+        /// Fonction qui récupère un utilisateur en fonction de son token
+        /// </summary>
+        /// <param name="token">le token de l'utilisateur</param>
+        /// <returns>Un utilisateur</returns>
+        public UtilisateurBusiness GetUtilisateurByToken(Guid token)
+        {
+            return DataAccess.GetUtilisateurByToken(token).ToBuisiness();
+        }
+
+        /// <summary>
+        /// Fonction qui ajoute une categorie à l'utilisateur
+        /// </summary>
+        /// <param name="user_id">l'identifiante de l'utilisateur</param>
+        /// <param name="cat_id">La categorie à ajouter à l'utilisteur</param>
+        public void AddCategorieByUser(int user_id,int cat_id)
+        {
+            DataAccess.AddCategoryByUser(user_id, cat_id);
+        }
+
+        /// <summary>
+        /// Retourne une categorie en fonction de son ID
+        /// </summary>
+        /// <param name="id">id de la categorie</param>
+        /// <returns>Une categorie</returns>
+        public Categorie GetCategoryById(int id)
+        {
+            return DataAccess.GetCategoryById(id);
+        }
+
+        /// <summary>
+        /// Supprime une categorie de l'utilisateur
+        /// </summary>
+        /// <param name="cat">Categorie</param>
+        /// <param name="token">Token de l'utilisateur</param>
+        /// <returns>un booleen</returns>
+        public bool DeleteCategoryByUser(Categorie cat, Guid token)
+        {
+            return DataAccess.DeleteCategoryUser(cat, token);
+        }
+
+        /// <summary>
+        /// Fonction qui récupére la liste des notes d'un utilisateur
+        /// </summary>
+        /// <param name="user_id">ID de l'utilisateur</param>
+        /// <returns>Liste de NoteUser</returns>
+        public List<NoteUser> GetNoteUser(int user_id) 
+        {
+            return DataAccess.GetNoteUser(user_id);
         }
     }
 }

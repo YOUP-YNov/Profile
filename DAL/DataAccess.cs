@@ -80,8 +80,9 @@ namespace DAL
         {
             try
             {
+                string passHashed = Encrypt.hashSHA256(Utilisateur.MotDePasse);
                 UtilisateurTA.Insert(Utilisateur.Pseudo,
-                                Utilisateur.MotDePasse,
+                                passHashed,
                                 Utilisateur.DateInscription,
                                 Utilisateur.Nom,
                                 Utilisateur.Prenom,
@@ -129,11 +130,12 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
-        public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur)
+        public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur, bool isPassUpdate)
         {
             try
             {
-                UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
+                if (isPassUpdate) { 
+                                UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
                                 Utilisateur.Pseudo,
                                 Utilisateur.MotDePasse,
                                 Utilisateur.DateInscription,
@@ -155,6 +157,34 @@ namespace DAL
                     return new UtilisateurDAL(u.Rows[0]);
                 else
                     return null;
+                }
+                else
+                {
+                    string passHashed = Encrypt.hashSHA256(Utilisateur.MotDePasse);
+                    UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
+                                Utilisateur.Pseudo,
+                                passHashed,
+                                Utilisateur.DateInscription,
+                                Utilisateur.Nom,
+                                Utilisateur.Prenom,
+                                Utilisateur.Sexe,
+                                Utilisateur.AdresseMail,
+                                Utilisateur.DateNaissance,
+                                Utilisateur.Ville,
+                                Utilisateur.CodePostal,
+                                Utilisateur.PhotoChemin,
+                                Utilisateur.Situation,
+                                Utilisateur.Actif,
+                                Utilisateur.Partenaire,
+                                Utilisateur.Presentation,
+                                Utilisateur.Metier);
+                    var u = UtilisateurTA.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+                    if (u.Rows.Count > 0)
+                        return new UtilisateurDAL(u.Rows[0]);
+                    else
+                        return null;
+                }
+                
             }
             catch (Exception E)
             {
@@ -245,6 +275,36 @@ namespace DAL
             return utilisateur;
         }
 
+        public void AddCategoryByUser(int id_user, int id_cat)
+        {
+            UtilisateurTA.AddCategorieByUser(id_user, id_cat);
+        }
+
+        public UtilisateurDAL GetUtilisateurByToken(Guid token)
+        {
+            var rep = UtilisateurTA.GetUtilisateurByToken(token);
+            UtilisateurDAL user = null;
+            if(rep.Rows.Count > 0)
+            {
+                user = new UtilisateurDAL(rep.Rows[0]);
+                var repAmis = UtilisateurSmallTA.GetAmisByUtilisateur(user.Utilisateur_Id);
+                foreach (var row in repAmis)
+                {
+                    user.Amis = user.Amis ?? new List<UtilisateurSmall>();
+                    user.Amis.Add(new UtilisateurSmall(row));
+                }
+
+                var repinteret = CategorieTA.GetCategorieByUtilisateur(user.Utilisateur_Id);
+                foreach (var row in repinteret)
+                {
+                    user.Categories = user.Categories ?? new List<Categorie>();
+                    user.Categories.Add(new Categorie(row));
+                }
+            }
+
+            return user;
+        }
+
         /// <summary>
         /// Désactivation d'un utilisateur à partir d'un Id
         /// </summary>
@@ -275,12 +335,36 @@ namespace DAL
           
             if (rep.Rows.Count > 0 )
             {
-                var user = new UtilisateurDAL(rep.Rows[0]);
-                user.Token = Guid.NewGuid();
-                TokenTA.Insert(user.Utilisateur_Id,user.Token, DateTime.Now.AddDays(10));
-                return user;
+                var utilisateur = new UtilisateurDAL(rep.Rows[0]);
+                var repamis = UtilisateurSmallTA.GetAmisByUtilisateur(utilisateur.Utilisateur_Id);
+                foreach (DataRow row in repamis)
+                {
+                    utilisateur.Amis = utilisateur.Amis ?? new List<UtilisateurSmall>();
+                    utilisateur.Amis.Add(new UtilisateurSmall(row));
+                }
+
+                var repinteret = CategorieTA.GetCategorieByUtilisateur(utilisateur.Utilisateur_Id);
+                foreach (DataRow cat in repinteret)
+                {
+                    utilisateur.Categories = utilisateur.Categories ?? new List<Categorie>();
+                    utilisateur.Categories.Add(new Categorie(cat));
+                }
+                utilisateur.Token = Guid.NewGuid();
+                TokenTA.Insert(utilisateur.Utilisateur_Id, utilisateur.Token, DateTime.Now.AddDays(10));
+                return utilisateur;
             }
             return null;
+        }
+
+        public bool GetInvitEvent(int event_id, int user_id, int invit_id)
+        {
+            try{
+                UtilisateurSmallTA.GetInvitEvent(event_id, user_id, invit_id);
+                return true;
+            }
+            catch{
+                return false;
+            }
         }
 
         /// <summary>
@@ -300,6 +384,69 @@ namespace DAL
 
             return lastTenUser;
 
+        }
+        /// <summary>
+        /// Retourne la categorie
+        /// </summary>
+        /// <param name="id">id categorie</param>
+        /// <returns>Une categorie</returns>
+        public Categorie GetCategoryById(int id)
+        {
+            Categorie cat = null;
+            var repCat = CategorieTA.GetCategoryById(id);
+
+            if(repCat.Rows.Count > 0)
+            {
+                cat = new Categorie(repCat.Rows[0]);
+            }
+
+            return cat;
         }       
+
+        /// <summary>
+        /// Selectionne toute les note d'un utilisateur
+        /// </summary>
+        /// <param name="user_id">id de l'utilisateur</param>
+        /// <returns>Liste de NoteUser</returns>
+        public List<NoteUser> GetNoteUser(int user_id)
+        {
+            List<NoteUser> listedenote = new List<NoteUser>();
+
+            var rep = new UT_Appreciation_TA().GetNoteUser(user_id);
+
+            foreach (DataRow row in rep)
+            {
+                listedenote.Add(new NoteUser(row));
+            }
+
+            return listedenote;
+        }
+
+        /// <summary>
+        /// Supprime une categorie d'un utilisateur
+        /// </summary>
+        /// <param name="cat">la categorie à supprimer</param>
+        /// <param name="token">le token de l'utilisateur</param>
+        /// <returns>un booleen</returns>
+        public bool DeleteCategoryUser(Categorie cat, Guid token)
+        {
+            bool delete = false;
+            UtilisateurDAL user = null;
+            var userByToken = UtilisateurTA.GetUtilisateurByToken(token);
+
+            if(userByToken.Rows.Count > 0)
+            {
+                user = new UtilisateurDAL(userByToken);
+            }
+
+            var rep = CategorieTA.DeleteCategoryByUser(user.Utilisateur_Id,cat.Categorie_id);
+
+            if(rep.Rows.Count > 0)
+            {
+                delete = Convert.ToBoolean(rep.Rows[0]);
+            }
+            return delete;
+        }
+       
     }
 }
