@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:UT_Utilisateur" ZOrder="4" X="547" Y="345" Height="362" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:UtilisateurSmall" ZOrder="3" X="98" Y="342" Height="172" Width="246" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
     <Shape ID="DesignTable:UT_Categorie" ZOrder="2" X="973" Y="448" Height="115" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
-    <Shape ID="DesignTable:CONNECT_Authentification" ZOrder="1" X="1018" Y="200" Height="153" Width="240" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
+    <Shape ID="DesignTable:CONNECT_Authentification" ZOrder="1" X="1018" Y="200" Height="172" Width="224" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
