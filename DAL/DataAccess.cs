@@ -30,7 +30,6 @@ namespace DAL
         private static readonly Lazy<TokenTA> lazyTokenTA =
                 new Lazy<TokenTA>(() => new TokenTA());
         private static TokenTA TokenTA { get { return lazyTokenTA.Value; } }
-
         /// <summary>
         /// Classe accedant aux données qui sont stockées en BDD SQL Server
         /// </summary>
@@ -81,8 +80,9 @@ namespace DAL
         {
             try
             {
+                string passHashed = Encrypt.hashSHA256(Utilisateur.MotDePasse);
                 UtilisateurTA.Insert(Utilisateur.Pseudo,
-                                Utilisateur.MotDePasse,
+                                passHashed,
                                 Utilisateur.DateInscription,
                                 Utilisateur.Nom,
                                 Utilisateur.Prenom,
@@ -130,10 +130,11 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
-        public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur)
+        public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur, bool isPassUpdate)
         {
             try
             {
+                if (isPassUpdate) { 
                 UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
                                 Utilisateur.Pseudo,
                                 Utilisateur.MotDePasse,
@@ -156,6 +157,34 @@ namespace DAL
                     return new UtilisateurDAL(u.Rows[0]);
                 else
                     return null;
+                }
+                else
+                {
+                    string passHashed = Encrypt.hashSHA256(Utilisateur.MotDePasse);
+                    UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
+                                Utilisateur.Pseudo,
+                                passHashed,
+                                Utilisateur.DateInscription,
+                                Utilisateur.Nom,
+                                Utilisateur.Prenom,
+                                Utilisateur.Sexe,
+                                Utilisateur.AdresseMail,
+                                Utilisateur.DateNaissance,
+                                Utilisateur.Ville,
+                                Utilisateur.CodePostal,
+                                Utilisateur.PhotoChemin,
+                                Utilisateur.Situation,
+                                Utilisateur.Actif,
+                                Utilisateur.Partenaire,
+                                Utilisateur.Presentation,
+                                Utilisateur.Metier);
+                    var u = UtilisateurTA.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+                    if (u.Rows.Count > 0)
+                        return new UtilisateurDAL(u.Rows[0]);
+                    else
+                        return null;
+            }
+                
             }
             catch (Exception E)
             {
@@ -180,6 +209,40 @@ namespace DAL
             }
 
             return reponse;
+        }
+
+        /// <summary>
+        /// Ajout d'un ami par son id
+        /// </summary>
+        /// <returns>True si OK, False si KO</returns>
+        public bool AddFriendByIdUtilisateur(int id_utilisateur, int id_ami)
+        {
+            try
+            {
+                UtilisateurTA.AddFriend(id_utilisateur, id_ami);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Retire un ami par son id
+        /// </summary>
+        /// <returns>True si OK, False si KO</returns>
+        public bool RemoveFriendByIdUtilisateur(int id_utilisateur, int id_ami)
+        {
+            try
+            {
+                UtilisateurTA.RemoveFriend(id_utilisateur, id_ami);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -268,12 +331,13 @@ namespace DAL
         /// <returns>Un nouveau UtilisateurDAL</returns>
         public UtilisateurDAL GetUserByEMailPasswd(string email, string passwd)
         {
-            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passwd);
+            var passhashed = Encrypt.hashSHA256(passwd);
+            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passhashed);
           
             if (rep.Rows.Count > 0 )
             {
                 var user = new UtilisateurDAL(rep.Rows[0]);
-                user.Token = Guid.NewGuid().ToString();
+                user.Token = Guid.NewGuid();
                 TokenTA.Insert(user.Utilisateur_Id,user.Token, DateTime.Now.AddDays(10));
                 return user;
             }

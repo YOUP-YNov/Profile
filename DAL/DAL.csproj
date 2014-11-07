@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\UtilisateurDAL.cs" />
     <Compile Include="Models\UtilisateurSmall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

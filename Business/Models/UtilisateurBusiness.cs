@@ -27,7 +27,7 @@ namespace Business.Models
         public Nullable<bool> Partenaire { get; set; }
         public string Presentation { get; set; }
         public string Metier { get; set; }
-        public string Token { get; set; }
+        public Guid Token { get; set; }
         public List<UtilisateurSmall> Amis { get; set; }
         public List<Categorie> Categories { get; set; }
 
