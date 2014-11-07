@@ -80,8 +80,9 @@ namespace DAL
         {
             try
             {
+                string passHashed = Encrypt.hashSHA256(Utilisateur.MotDePasse);
                 UtilisateurTA.Insert(Utilisateur.Pseudo,
-                                Utilisateur.MotDePasse,
+                                passHashed,
                                 Utilisateur.DateInscription,
                                 Utilisateur.Nom,
                                 Utilisateur.Prenom,
@@ -129,11 +130,12 @@ namespace DAL
         /// <param name="Presentation">Resumé, presentation de la personne </param>
         /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
         /// <returns>"ok" if works without error "ko" if error occur</returns>
-        public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur)
+        public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur, bool isPassUpdate)
         {
             try
             {
-                UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
+                if (isPassUpdate) { 
+                                UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
                                 Utilisateur.Pseudo,
                                 Utilisateur.MotDePasse,
                                 Utilisateur.DateInscription,
@@ -155,6 +157,34 @@ namespace DAL
                     return new UtilisateurDAL(u.Rows[0]);
                 else
                     return null;
+                }
+                else
+                {
+                    string passHashed = Encrypt.hashSHA256(Utilisateur.MotDePasse);
+                    UtilisateurTA.Update(Utilisateur.Utilisateur_Id,
+                                Utilisateur.Pseudo,
+                                passHashed,
+                                Utilisateur.DateInscription,
+                                Utilisateur.Nom,
+                                Utilisateur.Prenom,
+                                Utilisateur.Sexe,
+                                Utilisateur.AdresseMail,
+                                Utilisateur.DateNaissance,
+                                Utilisateur.Ville,
+                                Utilisateur.CodePostal,
+                                Utilisateur.PhotoChemin,
+                                Utilisateur.Situation,
+                                Utilisateur.Actif,
+                                Utilisateur.Partenaire,
+                                Utilisateur.Presentation,
+                                Utilisateur.Metier);
+                    var u = UtilisateurTA.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+                    if (u.Rows.Count > 0)
+                        return new UtilisateurDAL(u.Rows[0]);
+                    else
+                        return null;
+                }
+                
             }
             catch (Exception E)
             {
@@ -263,7 +293,8 @@ namespace DAL
         /// <returns>Un nouveau UtilisateurDAL</returns>
         public UtilisateurDAL GetUserByEMailPasswd(string email, string passwd)
         {
-            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passwd);
+            var passhashed = Encrypt.hashSHA256(passwd);
+            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passhashed);
           
             if (rep.Rows.Count > 0 )
             {

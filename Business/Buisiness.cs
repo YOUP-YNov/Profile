@@ -65,7 +65,10 @@ namespace Business
         /// <returns>Un utilisateur mis à jour</returns>
         public UtilisateurBusiness UpdateUtilisateur(UtilisateurBusiness Utilisateur)
         {
-            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur)).ToBuisiness();
+            var uInBase = DataAccess.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+
+            bool updatePass = Utilisateur.MotDePasse == uInBase.MotDePasse;
+            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass).ToBuisiness();
         }
 
         public List<UtilisateurSmall> GetTenProfilUtilisateur()
