@@ -292,6 +292,25 @@ namespace DAL
 
             return lastTenUser;
 
-        }       
+        }
+
+        /// <summary>
+        /// Selectionne toute les note d'un utilisateur
+        /// </summary>
+        /// <param name="user_id">id de l'utilisateur</param>
+        /// <returns>Liste de NoteUser</returns>
+        public List<NoteUser> GetNoteUser(int user_id)
+        {
+            List<NoteUser> listedenote = new List<NoteUser>();
+
+            var rep = new UT_Appreciation_TA().GetNoteUser(user_id);
+
+            foreach (DataRow row in rep)
+            {
+                listedenote.Add(new NoteUser(row));
+            }
+
+            return listedenote;
+        }
     }
 }

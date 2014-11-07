@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\NoteUser.cs" />
     <Compile Include="Models\UtilisateurDAL.cs" />
     <Compile Include="Models\UtilisateurSmall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +59,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>YoupDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="YoupDS1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YoupDS.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -71,7 +77,7 @@
     <None Include="YoupDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>YoupDS.Designer.cs</LastGenOutput>
+      <LastGenOutput>YoupDS1.Designer.cs</LastGenOutput>
     </None>
     <None Include="YoupDS.xss">
       <DependentUpon>YoupDS.xsd</DependentUpon>

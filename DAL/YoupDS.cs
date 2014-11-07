@@ -6,6 +6,9 @@
 }
 
 namespace DAL.YoupDSTableAdapters {
+    partial class UT_Appreciation_TA
+    {
+    }
 
 
     public partial class TokenTA
