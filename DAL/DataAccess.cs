@@ -305,10 +305,23 @@ namespace DAL
           
             if (rep.Rows.Count > 0 )
             {
-                var user = new UtilisateurDAL(rep.Rows[0]);
-                user.Token = Guid.NewGuid();
-                TokenTA.Insert(user.Utilisateur_Id,user.Token, DateTime.Now.AddDays(10));
-                return user;
+                var utilisateur = new UtilisateurDAL(rep.Rows[0]);
+                var repamis = UtilisateurSmallTA.GetAmisByUtilisateur(utilisateur.Utilisateur_Id);
+                foreach (DataRow row in repamis)
+                {
+                    utilisateur.Amis = utilisateur.Amis ?? new List<UtilisateurSmall>();
+                    utilisateur.Amis.Add(new UtilisateurSmall(row));
+                }
+
+                var repinteret = CategorieTA.GetCategorieByUtilisateur(utilisateur.Utilisateur_Id);
+                foreach (DataRow cat in repinteret)
+                {
+                    utilisateur.Categories = utilisateur.Categories ?? new List<Categorie>();
+                    utilisateur.Categories.Add(new Categorie(cat));
+                }
+                utilisateur.Token = Guid.NewGuid();
+                TokenTA.Insert(utilisateur.Utilisateur_Id, utilisateur.Token, DateTime.Now.AddDays(10));
+                return utilisateur;
             }
             return null;
         }
