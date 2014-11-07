@@ -19,8 +19,8 @@ namespace DAL.Models
 
         public Categorie(DataRow row)
         {
-            Categorie_id    = Convert.ToInt32(row["Utilisateur_id"]);
-            Libelle = row["Libelle"] as string;
+            Categorie_id    = Convert.ToInt32(row["Categorie_id"]);
+            Libelle         = row["Libelle"] as string;
         }
     }
 }

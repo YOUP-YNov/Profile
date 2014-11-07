@@ -22,17 +22,20 @@ namespace YOUP_Profile.Controllers
         /// <returns>Categorie</returns>
         public  Categorie GetCategorie(int id)
         {
-            return null;
+            return Buisiness.GetCategoryById(id);
         }
         /// <summary>
         /// Ajoute une categorie à un utilisateur
         /// </summary>
         /// <param name="categorie">L'objet Categorie à ajouter</param>
         /// <param name="token">le token de connexion de l'utilisateur</param>
-        /// <returns>la Categorie qui a été ajouté</returns>
-        public Categorie Post(Categorie categorie, Guid token)
+        /// <returns>les catégories de l'utilisateur</returns>
+        public List<Categorie> Post(Categorie categorie, Guid token)
         {
-            return null;
+            var rep = Buisiness.GetUtilisateurByToken(token);
+            Buisiness.AddCategorieByUser(rep.Utilisateur_Id, categorie.Categorie_id);
+
+            return rep.Categories;
         }
         /// <summary>
         /// Supprime de la liste des categorie suivi par l'utilisateur la categorie passer en parametre
@@ -42,7 +45,7 @@ namespace YOUP_Profile.Controllers
         /// <returns>true si tout cest bien passer, false si il y a eu une erreur</returns>
         public bool Delete(Categorie categorie, Guid token)
         {
-            return true;
+           return Buisiness.DeleteCategoryByUser(categorie, token);
         }
     }
 }
