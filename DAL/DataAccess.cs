@@ -113,27 +113,13 @@ namespace DAL
             }
             return null;
         }
+
         /// <summary>
-        /// Update a row of UT_Utilisateur Table
+        /// Modifie un utilisateur
         /// </summary>
-        /// <param name="Utilisateur_Id">Utilisateur id (PK)</param>
-        /// <param name="Pseudo">Pseudo Utilisateur</param>
-        /// <param name="MotDePasse">Mot de passe Utilisateur (SHA256)</param>
-        /// <param name="DateInscription">Date Inscription Utilisateur</param>
-        /// <param name="Nom">Nom Utilisateur</param>
-        /// <param name="Prenom">Prenom Utilisateur</param>
-        /// <param name="Sexe">(bool) Sexe Utilisateur (true = homme, false = Femme)</param>
-        /// <param name="AdresseMail">Adresse email Utilisateur</param>
-        /// <param name="DateNaissance"> Date de Naissance Utilisateur</param>
-        /// <param name="Ville"> Ville Utilisateur</param>
-        /// <param name="CodePostal"> Code Postal Utilisateur</param>
-        /// <param name="PhotoChemin"> Url vers Photo Utilisateur</param>
-        /// <param name="Situation"> situation Utilisateur (string)</param>
-        /// <param name="Actif">Actif ou non (bool) false si descativer</param>
-        /// <param name="Partenaire">(bool) si il s'agit d'un compte commercial ou non</param>
-        /// <param name="Presentation">Resumé, presentation de la personne </param>
-        /// <param name="Metier">chaine representant le metier de l'utilisateur</param>
-        /// <returns>"ok" if works without error "ko" if error occur</returns>
+        /// <param name="Utilisateur">un Utilisateur</param>
+        /// <param name="isPassUpdate"></param>
+        /// <returns></returns>
         public UtilisateurDAL UpdateUtilisateur(UtilisateurDAL Utilisateur, bool isPassUpdate)
         {
             try

@@ -49,5 +49,15 @@ namespace YOUP_Profile.Controllers
             return Buisiness.InsertUtilisateur(new UtilisateurBusiness((dynamic)utilisateur)).ToExpo();
         }
 
+        /// <summary>
+        /// Désactivation d'un utilisateur
+        /// </summary>
+        /// <param name="id_user">L'id d'un utilisateur</param>
+        /// <returns>Vrai ou faux</returns>
+        public bool DesactivationUtilisateur(int id_user)
+        {
+            return Buisiness.DesactivationUtilisateur(id_user);
+        }
+
     }
 }

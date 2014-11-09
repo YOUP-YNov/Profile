@@ -17,13 +17,16 @@ namespace YOUP_Profile.Controllers
 
         public bool GetInvitEvent(int event_id, int user_id, int invit_id)
         {
-            try { 
-            Buisiness.GetInvitEvent(event_id, user_id, invit_id);
+            try
+            {
+                Buisiness.GetInvitEvent(event_id, user_id, invit_id);
                 return true;
             }
-            catch{
+            catch
+            {
                 return false;
 
             }
+        }
     }
 }
