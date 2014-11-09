@@ -129,6 +129,10 @@ namespace Business
             return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass).ToBuisiness();
         }
 
+        /// <summary>
+        /// Retourne la liste des 10 derniers inscrit
+        /// </summary>
+        /// <returns>une liste d'utilisateur</returns>
         public List<UtilisateurSmall> GetTenProfilUtilisateur()
         {
             return DataAccess.GetTenProfilUtilisateur();   

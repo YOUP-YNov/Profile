@@ -265,11 +265,21 @@ namespace DAL
             return utilisateur;
         }
 
+        /// <summary>
+        /// Ajoute une categorie à l'utilisateur
+        /// </summary>
+        /// <param name="id_user">L'id de l'utilisateur</param>
+        /// <param name="id_cat">L'id de la categorie</param>
         public void AddCategoryByUser(int id_user, int id_cat)
         {
             UtilisateurTA.AddCategorieByUser(id_user, id_cat);
         }
 
+        /// <summary>
+        /// Retourne un utilisateur
+        /// </summary>
+        /// <param name="token">le token de l'utilisateur</param>
+        /// <returns>un Utilisateur</returns>
         public UtilisateurDAL GetUtilisateurByToken(Guid token)
         {
             var rep = UtilisateurTA.GetUtilisateurByToken(token);
