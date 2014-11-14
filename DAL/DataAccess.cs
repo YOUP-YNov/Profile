@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
-using DAL.YoupDSTableAdapters;
+using DAL.YoupProfileDSTableAdapters;
 
 namespace DAL
 {
@@ -101,7 +101,7 @@ namespace DAL
                                 Utilisateur.Partenaire,
                                 Utilisateur.Presentation,
                                 Utilisateur.Metier);
-                var u = UtilisateurTA.GetUtilisateurByEmailPassword(Utilisateur.AdresseMail, Utilisateur.MotDePasse);
+                var u = UtilisateurTA.GetUtilisateurByEmailPass(Utilisateur.AdresseMail, Utilisateur.MotDePasse);
                 if (u.Rows.Count > 0)
                     return new UtilisateurDAL(u.Rows[0]);
                 else
@@ -248,14 +248,14 @@ namespace DAL
             {
                 utilisateur = new UtilisateurDAL(rep.Rows[0]);
 
-                var repamis = UtilisateurSmallTA.GetAmisByUtilisateur(utilisateur.Utilisateur_Id);
+                var repamis = UtilisateurSmallTA.GetFriendByUser(utilisateur.Utilisateur_Id);
                 foreach (DataRow row in repamis)
                 {
                     utilisateur.Amis = utilisateur.Amis ?? new List<UtilisateurSmall>();
                     utilisateur.Amis.Add(new UtilisateurSmall(row));
                 }
 
-                var repinteret = CategorieTA.GetCategorieByUtilisateur(utilisateur.Utilisateur_Id);
+                var repinteret = CategorieTA.GetCategoryByUser(utilisateur.Utilisateur_Id);
                 foreach (DataRow cat in repinteret)
                 {
                     utilisateur.Categories = utilisateur.Categories ?? new List<Categorie>();
@@ -272,7 +272,7 @@ namespace DAL
         /// <param name="id_cat">L'id de la categorie</param>
         public void AddCategoryByUser(int id_user, int id_cat)
         {
-            UtilisateurTA.AddCategorieByUser(id_user, id_cat);
+            UtilisateurTA.AddCategoryByUser(id_user, id_cat);
         }
 
         /// <summary>
@@ -282,19 +282,19 @@ namespace DAL
         /// <returns>un Utilisateur</returns>
         public UtilisateurDAL GetUtilisateurByToken(Guid token)
         {
-            var rep = UtilisateurTA.GetUtilisateurByToken(token);
+            var rep = UtilisateurTA.GetUserByToken(token);
             UtilisateurDAL user = null;
             if(rep.Rows.Count > 0)
             {
                 user = new UtilisateurDAL(rep.Rows[0]);
-                var repAmis = UtilisateurSmallTA.GetAmisByUtilisateur(user.Utilisateur_Id);
+                var repAmis = UtilisateurSmallTA.GetFriendByUser(user.Utilisateur_Id);
                 foreach (var row in repAmis)
                 {
                     user.Amis = user.Amis ?? new List<UtilisateurSmall>();
                     user.Amis.Add(new UtilisateurSmall(row));
                 }
 
-                var repinteret = CategorieTA.GetCategorieByUtilisateur(user.Utilisateur_Id);
+                var repinteret = CategorieTA.GetCategoryByUser(user.Utilisateur_Id);
                 foreach (var row in repinteret)
                 {
                     user.Categories = user.Categories ?? new List<Categorie>();
@@ -331,19 +331,19 @@ namespace DAL
         /// <returns>Un nouveau UtilisateurDAL</returns>
         public UtilisateurDAL GetUserByEMailPasswd(string email, string passwd)
         {
-            var rep = UtilisateurTA.GetUtilisateurByEmailPassword(email, passwd);
+            var rep = UtilisateurTA.GetUtilisateurByEmailPass(email, passwd);
           
             if (rep.Rows.Count > 0 )
             {
                 var utilisateur = new UtilisateurDAL(rep.Rows[0]);
-                var repamis = UtilisateurSmallTA.GetAmisByUtilisateur(utilisateur.Utilisateur_Id);
+                var repamis = UtilisateurSmallTA.GetFriendByUser(utilisateur.Utilisateur_Id);
                 foreach (DataRow row in repamis)
                 {
                     utilisateur.Amis = utilisateur.Amis ?? new List<UtilisateurSmall>();
                     utilisateur.Amis.Add(new UtilisateurSmall(row));
                 }
 
-                var repinteret = CategorieTA.GetCategorieByUtilisateur(utilisateur.Utilisateur_Id);
+                var repinteret = CategorieTA.GetCategoryByUser(utilisateur.Utilisateur_Id);
                 foreach (DataRow cat in repinteret)
                 {
                     utilisateur.Categories = utilisateur.Categories ?? new List<Categorie>();
@@ -382,7 +382,7 @@ namespace DAL
         {
             List<UtilisateurSmall> lastTenUser = new List<UtilisateurSmall>();
 
-            var rep = UtilisateurSmallTA.GetTopTenUtilisateurs();
+            var rep = UtilisateurSmallTA.GetTopTenUser();
 
             foreach (DataRow utilisateur in rep)
             {
@@ -440,7 +440,7 @@ namespace DAL
         {
             bool delete = false;
             UtilisateurDAL user = null;
-            var userByToken = UtilisateurTA.GetUtilisateurByToken(token);
+            var userByToken = UtilisateurTA.GetUserByToken(token);
 
             if(userByToken.Rows.Count > 0)
             {

@@ -51,26 +51,31 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="YoupDS.cs">
-      <DependentUpon>YoupDS.xsd</DependentUpon>
+    <Compile Include="YoupProfileDS.cs">
+      <DependentUpon>YoupProfileDS.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="YoupDS.Designer.cs">
-      <DependentUpon>YoupDS.cs</DependentUpon>
+    <Compile Include="YoupProfileDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YoupProfileDS.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="YoupDS.xsc">
-      <DependentUpon>YoupDS.xsd</DependentUpon>
+    <None Include="YoupProfileDS.xsc">
+      <DependentUpon>YoupProfileDS.xsd</DependentUpon>
     </None>
-    <None Include="YoupDS.xsd" />
-    <None Include="YoupDS.xss">
-      <DependentUpon>YoupDS.xsd</DependentUpon>
+    <None Include="YoupProfileDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>YoupProfileDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="YoupProfileDS.xss">
+      <DependentUpon>YoupProfileDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
