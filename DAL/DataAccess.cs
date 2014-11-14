@@ -187,7 +187,7 @@ namespace DAL
         /// Récupération des 5 premier utilisateurs qui participent le plus
         /// </summary>
         /// <returns>Liste de d5 UtilisateurSmallDAL</returns>
-        public List<UtilisateurSmall> GetTopEvent()
+        public List<UtilisateurSmall> GetTopFiveEvent()
         {
             List<UtilisateurSmall> reponse = new List<UtilisateurSmall>();
 
@@ -195,7 +195,7 @@ namespace DAL
 
             foreach (DataRow row in rep.Rows)
             {
-                reponse.Add(new UtilisateurSmall(row));
+                reponse.Add(new UtilisateurSmall(row)); 
             }
 
             return reponse;

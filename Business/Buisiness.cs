@@ -152,7 +152,7 @@ namespace Business
         /// <returns>Une Liste de 5 UtilisateurSmall (données réduites)</returns>
         public List<UtilisateurSmall> GetFiveMostParticipantUser()
         {
-            return DataAccess.GetTopEvent();
+            return DataAccess.GetTopFiveEvent();
         }
         /// <summary>
         /// Fonction qui récupère un utilisateur en fonction de son token
