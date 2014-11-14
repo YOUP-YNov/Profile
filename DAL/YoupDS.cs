@@ -6,6 +6,10 @@
 }
 
 namespace DAL.YoupDSTableAdapters {
+    partial class UtilisateurSmallTA
+    {
+    }
+
     partial class UT_Appreciation_TA
     {
     }
