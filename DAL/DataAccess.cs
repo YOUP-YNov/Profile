@@ -356,6 +356,13 @@ namespace DAL
             return null;
         }
 
+        /// <summary>
+        /// Invitation événement d'un utilisateur par un autre utilisateur
+        /// </summary>
+        /// <param name="event_id"> id de l'event</param>
+        /// <param name="invit_id"> id de l'utilisateur invité</param>
+        /// <param name="user_id"> id du créateur de l'event</param>
+        /// <returns>true si invit OK false si invit KO</returns>
         public bool GetInvitEvent(int event_id, int user_id, int invit_id)
         {
             try{
@@ -448,6 +455,5 @@ namespace DAL
             }
             return delete;
         }
-       
     }
 }
