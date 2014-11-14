@@ -123,10 +123,18 @@ namespace Business
         /// <returns>Un utilisateur mis à jour</returns>
         public UtilisateurBusiness UpdateUtilisateur(UtilisateurBusiness Utilisateur)
         {
-            var uInBase = DataAccess.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+            UtilisateurBusiness existUser = GetUtilisateurByToken(Utilisateur.Token);
+            UtilisateurBusiness userUpdate = null;
 
-            bool updatePass = Utilisateur.MotDePasse == uInBase.MotDePasse;
-            return DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass).ToBuisiness();
+            if(existUser != null)
+            {
+                var uInBase = DataAccess.GetUtilisateurById(Utilisateur.Utilisateur_Id);
+
+                bool updatePass = Utilisateur.MotDePasse == uInBase.MotDePasse;
+                userUpdate = DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass).ToBuisiness();
+            }
+
+            return userUpdate;
         }
 
         /// <summary>
