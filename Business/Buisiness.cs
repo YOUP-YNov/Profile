@@ -39,6 +39,16 @@ namespace Business
         }
 
         /// <summary>
+        /// Retourne les informations basique d'un utilisateur
+        /// </summary>
+        /// <param name="id">l'id utilisateur</param>
+        /// <returns>L'utilisateur</returns>
+        public UtilisateurSmall GetSmallUserById(int id)
+        {
+            return DataAccess.GetSmallUserById(id);
+        }
+
+        /// <summary>
         /// Creation d'un nouveau utilisateur
         /// </summary>
         /// <param name="utilisateur">Un utilisateur</param>

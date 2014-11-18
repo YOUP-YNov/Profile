@@ -184,6 +184,24 @@ namespace DAL
         }
 
         /// <summary>
+        /// Retourne les informations basique d'un utilisateur
+        /// </summary>
+        /// <param name="id">l'id utilisateur</param>
+        /// <returns>L'utilisateur</returns>
+        public UtilisateurSmall GetSmallUserById(int id)
+        {
+            UtilisateurSmall user = null;
+
+            var rep = UtilisateurSmallTA.GetSmallUserById(id);
+            if (rep != null)
+            {
+                user = new UtilisateurSmall(rep.Rows[0]);
+            }
+
+            return user;
+        }
+
+        /// <summary>
         /// Récupération des 5 premier utilisateurs qui participent le plus
         /// </summary>
         /// <returns>Liste de d5 UtilisateurSmallDAL</returns>
