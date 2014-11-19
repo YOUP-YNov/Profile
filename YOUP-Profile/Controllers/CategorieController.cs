@@ -20,7 +20,7 @@ namespace YOUP_Profile.Controllers
         /// </summary>
         /// <param name="id">id de la categorie</param>
         /// <returns>Categorie</returns>
-        public  Categorie GetCategorie(int id)
+        public  Categorie Get(int id)
         {
             return Buisiness.GetCategoryById(id);
         }
@@ -43,9 +43,9 @@ namespace YOUP_Profile.Controllers
         /// <param name="categorie">la categorie à supprimer</param>
         /// <param name="token">le token de connexion de l'utilisateur</param>
         /// <returns>true si tout cest bien passer, false si il y a eu une erreur</returns>
-        public bool Delete(Categorie categorie, Guid token)
+        public bool Delete(int categorie_id, Guid token)
         {
-           return Buisiness.DeleteCategoryByUser(categorie, token);
+           return Buisiness.DeleteCategoryByUser(categorie_id, token);
         }
     }
 }

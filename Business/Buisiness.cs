@@ -200,9 +200,9 @@ namespace Business
         /// <param name="cat">Categorie</param>
         /// <param name="token">Token de l'utilisateur</param>
         /// <returns>un booleen</returns>
-        public bool DeleteCategoryByUser(Categorie cat, Guid token)
+        public bool DeleteCategoryByUser(int cat_id, Guid token)
         {
-            return DataAccess.DeleteCategoryUser(cat, token);
+            return DataAccess.DeleteCategoryUser(cat_id, token);
         }
 
         /// <summary>

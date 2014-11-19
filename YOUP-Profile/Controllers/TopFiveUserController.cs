@@ -24,15 +24,5 @@ namespace YOUP_Profile.Controllers
         {
             return Buisiness.GetFiveMostParticipantUser();
         }
-
-        /// <summary>
-        /// Recupere 5 des amis de l'utilisateur
-        /// </summary>
-        /// <param name="utilisateur_id">l'id de l'utilisateur</param>
-        /// <returns>Une liste de small Utilisateur</returns>
-        public IEnumerable<UtilisateurSmall> Post(int utilisateur_id)
-        {
-            return null;
-        }
     }
 }

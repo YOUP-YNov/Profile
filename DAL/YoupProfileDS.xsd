@@ -250,7 +250,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CategorieTA" GeneratorDataComponentClassName="CategorieTA" Name="UT_Gategorie" UserDataComponentName="CategorieTA">
             <MainSource>
-              <DbSource ConnectionRef="YoupDEVConnectionString (Settings)" DbObjectName="YoupDEV.dbo.ps_UT_GetCategorieByUtilisateur" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCategoryByUser" GetMethodModifier="Public" GetMethodName="GetCategoryByUser" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCategoryByUser" UserSourceName="GetCategoryByUser">
+              <DbSource ConnectionRef="YoupDEVConnectionString (Settings)" DbObjectName="YoupDEV.dbo.ps_UT_GetCategorieByUtilisateur" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCategoryByUser" GetMethodModifier="Public" GetMethodName="GetCategoryByUser" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetCategoryByUser" UserSourceName="GetCategoryByUser">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.ps_UT_GetCategorieByUtilisateur</CommandText>
@@ -264,7 +264,7 @@
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="Libelle" DataSetColumn="Libelle" />
-              <Mapping SourceColumn="Utilisateur_id" DataSetColumn="Utilisateur_id" />
+              <Mapping SourceColumn="Categorie_id" DataSetColumn="Categorie_id" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="YoupDEVConnectionString (Settings)" DbObjectName="YoupDEV.dbo.ps_UT_DeleteCategoryByUser" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="DeleteCategoryByUser" GetMethodModifier="Public" GetMethodName="DeleteCategoryByUser" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="DeleteCategoryByUser" UserSourceName="DeleteCategoryByUser">
@@ -343,7 +343,7 @@
   <xs:element name="YoupProfileDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="YoupProfileDS" msprop:Generator_UserDSName="YoupProfileDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="UT_Utilisateur" msprop:Generator_TableClassName="UT_UtilisateurDataTable" msprop:Generator_TableVarName="tableUT_Utilisateur" msprop:Generator_RowChangedName="UT_UtilisateurRowChanged" msprop:Generator_TablePropName="UT_Utilisateur" msprop:Generator_RowDeletingName="UT_UtilisateurRowDeleting" msprop:Generator_RowChangingName="UT_UtilisateurRowChanging" msprop:Generator_RowEvHandlerName="UT_UtilisateurRowChangeEventHandler" msprop:Generator_RowDeletedName="UT_UtilisateurRowDeleted" msprop:Generator_RowClassName="UT_UtilisateurRow" msprop:Generator_UserTableName="UT_Utilisateur" msprop:Generator_RowEvArgName="UT_UtilisateurRowChangeEvent">
+        <xs:element name="UT_Utilisateur" msprop:Generator_TableClassName="UT_UtilisateurDataTable" msprop:Generator_TableVarName="tableUT_Utilisateur" msprop:Generator_TablePropName="UT_Utilisateur" msprop:Generator_RowDeletingName="UT_UtilisateurRowDeleting" msprop:Generator_RowChangingName="UT_UtilisateurRowChanging" msprop:Generator_RowEvHandlerName="UT_UtilisateurRowChangeEventHandler" msprop:Generator_RowDeletedName="UT_UtilisateurRowDeleted" msprop:Generator_UserTableName="UT_Utilisateur" msprop:Generator_RowChangedName="UT_UtilisateurRowChanged" msprop:Generator_RowEvArgName="UT_UtilisateurRowChangeEvent" msprop:Generator_RowClassName="UT_UtilisateurRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Utilisateur_id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnUtilisateur_id" msprop:Generator_ColumnPropNameInRow="Utilisateur_id" msprop:Generator_ColumnPropNameInTable="Utilisateur_idColumn" msprop:Generator_UserColumnName="Utilisateur_id" type="xs:long" />
@@ -432,7 +432,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UtilisateurSmall" msprop:Generator_TableClassName="UtilisateurSmallDataTable" msprop:Generator_TableVarName="tableUtilisateurSmall" msprop:Generator_RowChangedName="UtilisateurSmallRowChanged" msprop:Generator_TablePropName="UtilisateurSmall" msprop:Generator_RowDeletingName="UtilisateurSmallRowDeleting" msprop:Generator_RowChangingName="UtilisateurSmallRowChanging" msprop:Generator_RowEvHandlerName="UtilisateurSmallRowChangeEventHandler" msprop:Generator_RowDeletedName="UtilisateurSmallRowDeleted" msprop:Generator_RowClassName="UtilisateurSmallRow" msprop:Generator_UserTableName="UtilisateurSmall" msprop:Generator_RowEvArgName="UtilisateurSmallRowChangeEvent">
+        <xs:element name="UtilisateurSmall" msprop:Generator_TableClassName="UtilisateurSmallDataTable" msprop:Generator_TableVarName="tableUtilisateurSmall" msprop:Generator_TablePropName="UtilisateurSmall" msprop:Generator_RowDeletingName="UtilisateurSmallRowDeleting" msprop:Generator_RowChangingName="UtilisateurSmallRowChanging" msprop:Generator_RowEvHandlerName="UtilisateurSmallRowChangeEventHandler" msprop:Generator_RowDeletedName="UtilisateurSmallRowDeleted" msprop:Generator_UserTableName="UtilisateurSmall" msprop:Generator_RowChangedName="UtilisateurSmallRowChanged" msprop:Generator_RowEvArgName="UtilisateurSmallRowChangeEvent" msprop:Generator_RowClassName="UtilisateurSmallRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Utilisateur_id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnUtilisateur_id" msprop:Generator_ColumnPropNameInRow="Utilisateur_id" msprop:Generator_ColumnPropNameInTable="Utilisateur_idColumn" msprop:Generator_UserColumnName="Utilisateur_id" type="xs:long" />
@@ -453,7 +453,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UT_Gategorie" msprop:Generator_TableClassName="UT_GategorieDataTable" msprop:Generator_TableVarName="tableUT_Gategorie" msprop:Generator_RowChangedName="UT_GategorieRowChanged" msprop:Generator_TablePropName="UT_Gategorie" msprop:Generator_RowDeletingName="UT_GategorieRowDeleting" msprop:Generator_RowChangingName="UT_GategorieRowChanging" msprop:Generator_RowEvHandlerName="UT_GategorieRowChangeEventHandler" msprop:Generator_RowDeletedName="UT_GategorieRowDeleted" msprop:Generator_RowClassName="UT_GategorieRow" msprop:Generator_UserTableName="UT_Gategorie" msprop:Generator_RowEvArgName="UT_GategorieRowChangeEvent">
+        <xs:element name="UT_Gategorie" msprop:Generator_TableClassName="UT_GategorieDataTable" msprop:Generator_TableVarName="tableUT_Gategorie" msprop:Generator_TablePropName="UT_Gategorie" msprop:Generator_RowDeletingName="UT_GategorieRowDeleting" msprop:Generator_RowChangingName="UT_GategorieRowChanging" msprop:Generator_RowEvHandlerName="UT_GategorieRowChangeEventHandler" msprop:Generator_RowDeletedName="UT_GategorieRowDeleted" msprop:Generator_UserTableName="UT_Gategorie" msprop:Generator_RowChangedName="UT_GategorieRowChanged" msprop:Generator_RowEvArgName="UT_GategorieRowChangeEvent" msprop:Generator_RowClassName="UT_GategorieRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Libelle" msprop:Generator_ColumnVarNameInTable="columnLibelle" msprop:Generator_ColumnPropNameInRow="Libelle" msprop:Generator_ColumnPropNameInTable="LibelleColumn" msprop:Generator_UserColumnName="Libelle">
@@ -463,11 +463,11 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Utilisateur_id" msprop:Generator_ColumnVarNameInTable="columnUtilisateur_id" msprop:Generator_ColumnPropNameInRow="Utilisateur_id" msprop:Generator_ColumnPropNameInTable="Utilisateur_idColumn" msprop:Generator_UserColumnName="Utilisateur_id" type="xs:long" />
+              <xs:element name="Categorie_id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCategorie_id" msprop:Generator_ColumnPropNameInRow="Categorie_id" msprop:Generator_ColumnPropNameInTable="Categorie_idColumn" msprop:Generator_UserColumnName="Categorie_id" type="xs:long" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Token" msprop:Generator_TableClassName="TokenDataTable" msprop:Generator_TableVarName="tableToken" msprop:Generator_RowChangedName="TokenRowChanged" msprop:Generator_TablePropName="Token" msprop:Generator_RowDeletingName="TokenRowDeleting" msprop:Generator_RowChangingName="TokenRowChanging" msprop:Generator_RowEvHandlerName="TokenRowChangeEventHandler" msprop:Generator_RowDeletedName="TokenRowDeleted" msprop:Generator_RowClassName="TokenRow" msprop:Generator_UserTableName="Token" msprop:Generator_RowEvArgName="TokenRowChangeEvent">
+        <xs:element name="Token" msprop:Generator_TableClassName="TokenDataTable" msprop:Generator_TableVarName="tableToken" msprop:Generator_TablePropName="Token" msprop:Generator_RowDeletingName="TokenRowDeleting" msprop:Generator_RowChangingName="TokenRowChanging" msprop:Generator_RowEvHandlerName="TokenRowChangeEventHandler" msprop:Generator_RowDeletedName="TokenRowDeleted" msprop:Generator_UserTableName="Token" msprop:Generator_RowChangedName="TokenRowChanged" msprop:Generator_RowEvArgName="TokenRowChangeEvent" msprop:Generator_RowClassName="TokenRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Authentification_id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAuthentification_id" msprop:Generator_ColumnPropNameInRow="Authentification_id" msprop:Generator_ColumnPropNameInTable="Authentification_idColumn" msprop:Generator_UserColumnName="Authentification_id" type="xs:long" />
@@ -486,6 +486,10 @@
     <xs:unique name="UtilisateurSmall_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:UtilisateurSmall" />
       <xs:field xpath="mstns:Utilisateur_id" />
+    </xs:unique>
+    <xs:unique name="UT_Gategorie_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:UT_Gategorie" />
+      <xs:field xpath="mstns:Categorie_id" />
     </xs:unique>
     <xs:unique name="Token_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Token" />

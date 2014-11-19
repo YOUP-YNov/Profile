@@ -253,6 +253,7 @@ namespace DAL
             }
         }
 
+
         /// <summary>
         /// Récupère les données utilisateurs à partir d'un ID
         /// </summary>
@@ -454,7 +455,7 @@ namespace DAL
         /// <param name="cat">la categorie à supprimer</param>
         /// <param name="token">le token de l'utilisateur</param>
         /// <returns>un booleen</returns>
-        public bool DeleteCategoryUser(Categorie cat, Guid token)
+        public bool DeleteCategoryUser(int cat_id, Guid token)
         {
             bool delete = false;
             UtilisateurDAL user = null;
@@ -465,7 +466,7 @@ namespace DAL
                 user = new UtilisateurDAL(userByToken);
             }
 
-            var rep = CategorieTA.DeleteCategoryByUser(user.Utilisateur_Id,cat.Categorie_id);
+            var rep = CategorieTA.DeleteCategoryByUser(user.Utilisateur_Id,cat_id);
 
             if(rep.Rows.Count > 0)
             {
