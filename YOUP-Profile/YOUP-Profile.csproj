@@ -164,6 +164,7 @@
     <Compile Include="Controllers\TopTenUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserPublicController.cs" />
+    <Compile Include="Controllers\UserSmallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -56,9 +56,10 @@ namespace YOUP_Profile.Controllers
         /// </summary>
         /// <param name="id_user">L'id d'un utilisateur</param>
         /// <returns>Vrai ou faux</returns>
-        public bool Delete(int id_user)
+        [HttpDelete]
+        public bool Delete(int id)
         {
-            return Buisiness.DesactivationUtilisateur(id_user);
+            return Buisiness.DesactivationUtilisateur(id);
         }
 
     }
