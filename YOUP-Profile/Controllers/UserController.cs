@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using YOUP_Profile.Models;
 using YOUP_Profile.Models.Adapters;
 
 namespace YOUP_Profile.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class UserController : ApiController
     {
 
