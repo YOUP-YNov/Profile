@@ -26,7 +26,8 @@ namespace YOUP_Profile.Controllers
         /// <returns></returns>
         public Utilisateur Post(string Email, string Pass, string Device = null)
         {
-            return Buisiness.GetUtilisateurByEmailPassword(Email, Pass, Device).ToExpo();
+            var u = Buisiness.GetUtilisateurByEmailPassword(Email, Pass, Device);
+            return (u != null)? u.ToExpo() : null;
         }
         
         /// <summary>

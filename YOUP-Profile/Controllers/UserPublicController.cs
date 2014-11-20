@@ -25,7 +25,8 @@ namespace YOUP_Profile.Controllers
         /// <returns>utilisateur</returns>
         public UtilisateurPublic Get(int id)
         {
-            return new UtilisateurPublic(Buisiness.GetUtilisateurById(id).ToExpo());
+            var u = Buisiness.GetUtilisateurById(id);
+            return (u != null) ?new UtilisateurPublic(u.ToExpo()) : null;
         }
 
     }

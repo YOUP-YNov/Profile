@@ -28,7 +28,8 @@ namespace YOUP_Profile.Controllers
         /// <returns>utilisateur</returns>
         public Utilisateur Get(int id)
         {
-            return new Utilisateur(Buisiness.GetUtilisateurById(id));
+            var u = Buisiness.GetUtilisateurById(id);
+            return (u != null) ? new Utilisateur(u) : null;
         }
 
         /// <summary>
@@ -38,7 +39,8 @@ namespace YOUP_Profile.Controllers
         /// <returns>l'utilisateur mit à jour</returns>
         public Utilisateur Put(Utilisateur utilisateur)
         {
-            return Buisiness.InsertUtilisateur(new UtilisateurBusiness((dynamic)utilisateur)).ToExpo();
+            var u = Buisiness.InsertUtilisateur(new UtilisateurBusiness((dynamic)utilisateur));
+            return (u != null) ? u.ToExpo() : null;
         }
 
         /// <summary>
@@ -48,7 +50,8 @@ namespace YOUP_Profile.Controllers
         /// <returns>L'utilisateur creer</returns>
         public Utilisateur Post(Utilisateur utilisateur)
         {
-            return Buisiness.InsertUtilisateur(new UtilisateurBusiness((dynamic)utilisateur)).ToExpo();
+            var u = Buisiness.InsertUtilisateur(new UtilisateurBusiness((dynamic)utilisateur));
+            return (u != null) ? u.ToExpo() : null;
         }
 
         /// <summary>

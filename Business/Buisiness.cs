@@ -23,7 +23,8 @@ namespace Business
         /// <returns>Utilisateur</returns>
         public UtilisateurBusiness GetUtilisateurById(int id)
         {
-            return DataAccess.GetUtilisateurById(id).ToBuisiness();
+            var u = DataAccess.GetUtilisateurById(id);
+            return ( u != null) ? u.ToBuisiness() : null;
         }
 
         /// <summary>
@@ -35,7 +36,8 @@ namespace Business
         /// <returns></returns>
         public UtilisateurBusiness GetUtilisateurByEmailPassword(string email, string password, string device = null)
         {
-            return DataAccess.GetUserByEMailPasswd(email, Encrypt.hashSHA256(password)).ToBuisiness();
+            var u = DataAccess.GetUserByEMailPasswd(email, Encrypt.hashSHA256(password));
+            return (u != null) ? u.ToBuisiness() : null;
         }
 
         /// <summary>
@@ -55,7 +57,8 @@ namespace Business
         /// <returns>L'utilisateur creer, avec son id mit à jour</returns>
         public UtilisateurBusiness InsertUtilisateur(UtilisateurBusiness utilisateur)
         {
-            return DataAccess.AddUtilisateur(new UtilisateurDAL((dynamic)utilisateur)).ToBuisiness();
+            var u = DataAccess.AddUtilisateur(new UtilisateurDAL((dynamic)utilisateur));
+            return (u != null) ? u.ToBuisiness() : null;
         }
 
         /// <summary>
@@ -141,7 +144,8 @@ namespace Business
                 var uInBase = DataAccess.GetUtilisateurById(Utilisateur.Utilisateur_Id);
 
                 bool updatePass = Utilisateur.MotDePasse == uInBase.MotDePasse;
-                userUpdate = DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass).ToBuisiness();
+                var u = DataAccess.UpdateUtilisateur(new UtilisateurDAL((dynamic)Utilisateur), updatePass);
+                userUpdate = (u != null) ? u.ToBuisiness() : null;
             }
 
             return userUpdate;
