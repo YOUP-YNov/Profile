@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using YOUP_Profile.Models;
@@ -22,10 +25,35 @@ namespace YOUP_Profile.Controllers
         /// </summary>
         /// <param name="id"> Token de connexion</param>
         /// <returns>Utilisateur </returns>
-        public Utilisateur Get(Guid id)
+        public async Task<Utilisateur> Get(Guid id)
         {
+     
             var u = Buisiness.GetUtilisateurByToken(id);
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://youp-recherche.azurewebsites.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage reponse = await client.GetAsync("add/get_profile?id=" + u.Utilisateur_Id + "&firstname=" + u.Nom + "&lastname=" + u.Prenom + "&pseudo=" + u.Pseudo + "&activity=" + u.Actif + "&age=" + u.DateNaissance + "&sex=" + u.Sexe + "&town=" + u.Ville + "");
+
+                    if (!reponse.IsSuccessStatusCode)
+                        throw new HttpResponseException(reponse);
+                }
+            }
+            catch (Exception)
+            {
+                
+    
+            }
+            //API ElasticSearch
+           
+
             return (u != null) ? u.ToExpo() : null;
+
+
         }
 
         /// <summary>
