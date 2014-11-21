@@ -481,6 +481,13 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:YOUP_Profile.Controllers.AuthController.Get(System.Guid)">
+            <summary>
+            Retourne l'utilisateur en fonction de son Token
+            </summary>
+            <param name="id"> Token de connexion</param>
+            <returns>Utilisateur </returns>
+        </member>
         <member name="M:YOUP_Profile.Controllers.AuthController.Post(System.String,System.String,System.String)">
             <summary>
             Authentifie un utilisateur en recevant un email et un mot de passe
@@ -535,6 +542,14 @@
             <param name="ami_id"> id de l'ami à ajouter </param>
             <param name="utilisateur_id"> id de l'utilisateur qui veut ajouter un ami</param>
             <returns>true si la demande à bien etait faite</returns>
+        </member>
+        <member name="M:YOUP_Profile.Controllers.FriendController.Delete(System.Int32,System.Int32)">
+            <summary>
+            Supprimer un ami d'un utilisateur
+            </summary>
+            <param name="utilisateur_id">l'id de l'utilisateur</param>
+            <param name="ami_id">l'id utilisateur de l'ami à supprimer</param>
+            <returns>vrai si ça c'est bien passé</returns>
         </member>
         <member name="M:YOUP_Profile.Controllers.InvitEventController.Post(System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -591,6 +606,12 @@
             </summary>
             <param name="id">utilisateur_id </param>
             <returns>utilisateur</returns>
+        </member>
+        <member name="M:YOUP_Profile.Controllers.UserSmallController.Get">
+            <summary>
+            Retourne tout les utilisateurs sous la forme d'un utilisateur small
+            </summary>
+            <returns>liste d'utilisateur small</returns>
         </member>
         <member name="M:YOUP_Profile.Controllers.UserSmallController.Get(System.Int32)">
             <summary>
