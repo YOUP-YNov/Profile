@@ -475,6 +475,11 @@ namespace DAL
             return delete;
         }
 
+        /// <summary>
+        /// Récupère une liste d'utilisateur avec pour seul information
+        /// le pseudo, la photo et l'id
+        /// </summary>
+        /// <returns>une liste d'utilisateurs small</returns>
         public IEnumerable<UtilisateurSmall> GetAllSmallUser()
         {
             var rep = UtilisateurSmallTA.GetAllSmallUser();

@@ -498,7 +498,7 @@
             <param name="token">Token de connexion de l'utilisateur</param>
             <returns>true si il n'y a pas eu de probleme, false si une erreur</returns>
         </member>
-        <member name="M:YOUP_Profile.Controllers.CategorieController.GetCategorie(System.Int32)">
+        <member name="M:YOUP_Profile.Controllers.CategorieController.Get(System.Int32)">
             <summary>
             Recupere une categorie en fonction de son id
             </summary>
@@ -513,7 +513,7 @@
             <param name="token">le token de connexion de l'utilisateur</param>
             <returns>les catégories de l'utilisateur</returns>
         </member>
-        <member name="M:YOUP_Profile.Controllers.CategorieController.Delete(DAL.Models.Categorie,System.Guid)">
+        <member name="M:YOUP_Profile.Controllers.CategorieController.Delete(System.Int32,System.Guid)">
             <summary>
             Supprime de la liste des categorie suivi par l'utilisateur la categorie passer en parametre
             </summary>
@@ -536,7 +536,7 @@
             <param name="utilisateur_id"> id de l'utilisateur qui veut ajouter un ami</param>
             <returns>true si la demande à bien etait faite</returns>
         </member>
-        <member name="M:YOUP_Profile.Controllers.InvitEventController.GetInvitEvent(System.Int32,System.Int32,System.Int32)">
+        <member name="M:YOUP_Profile.Controllers.InvitEventController.Post(System.Int32,System.Int32,System.Int32)">
             <summary>
             Envoie une invitation à un événement d'un utilisateur à un autre
             </summary>
@@ -550,13 +550,6 @@
             Recupere les 5 utilisateurs qui participe le plus à des evenements
             </summary>
             <returns>Une liste de 5 UtilisateurSmall</returns>
-        </member>
-        <member name="M:YOUP_Profile.Controllers.TopFiveUserController.Post(System.Int32)">
-            <summary>
-            Recupere 5 des amis de l'utilisateur
-            </summary>
-            <param name="utilisateur_id">l'id de l'utilisateur</param>
-            <returns>Une liste de small Utilisateur</returns>
         </member>
         <member name="M:YOUP_Profile.Controllers.TopTenUserController.Get">
             <summary>
@@ -585,7 +578,7 @@
             <param name="utilisateur">Un utilisateur</param>
             <returns>L'utilisateur creer</returns>
         </member>
-        <member name="M:YOUP_Profile.Controllers.UserController.DesactivationUtilisateur(System.Int32)">
+        <member name="M:YOUP_Profile.Controllers.UserController.Delete(System.Int32)">
             <summary>
             Désactivation d'un utilisateur
             </summary>
@@ -598,6 +591,12 @@
             </summary>
             <param name="id">utilisateur_id </param>
             <returns>utilisateur</returns>
+        </member>
+        <member name="M:YOUP_Profile.Controllers.UserSmallController.Get(System.Int32)">
+            <summary>
+            Recupere un aperçu de l'utilisateur ( id, pseudo, photo )
+            </summary>
+            <returns>utilisateurSmall</returns>
         </member>
     </members>
 </doc>

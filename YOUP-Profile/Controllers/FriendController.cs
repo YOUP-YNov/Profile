@@ -54,6 +54,12 @@ namespace YOUP_Profile.Controllers
             }
         }
 
+        /// <summary>
+        /// Supprimer un ami d'un utilisateur
+        /// </summary>
+        /// <param name="utilisateur_id">l'id de l'utilisateur</param>
+        /// <param name="ami_id">l'id utilisateur de l'ami à supprimer</param>
+        /// <returns>vrai si ça c'est bien passé</returns>
         public bool Delete(int utilisateur_id, int ami_id)
         {
             try
