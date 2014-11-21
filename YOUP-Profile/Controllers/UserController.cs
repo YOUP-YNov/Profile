@@ -101,8 +101,25 @@ namespace YOUP_Profile.Controllers
         /// <param name="id_user">L'id d'un utilisateur</param>
         /// <returns>Vrai ou faux</returns>
         [HttpDelete]
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
+            //API ElasticSearch
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://youp-recherche.azurewebsites.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage reponse = await client.GetAsync("remove/get_profile?id="+ id);
+
+                    if (!reponse.IsSuccessStatusCode)
+                        throw new HttpResponseException(reponse);
+                }
+            }
+            catch (Exception) { }
+
             return Buisiness.DesactivationUtilisateur(id);
         }
 
