@@ -15,6 +15,10 @@ namespace YOUP_Profile.Controllers
                 new Lazy<Buisiness>(() => new Buisiness());
         private static Buisiness Buisiness { get { return lazyBuisiness.Value; } }
 
+        public IEnumerable<UtilisateurSmall> Get()
+        {
+            return Buisiness.GetAllUserSmall();
+        }
 
         /// <summary>
         /// Recupere un aperçu de l'utilisateur ( id, pseudo, photo )

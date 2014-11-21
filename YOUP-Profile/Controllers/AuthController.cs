@@ -18,6 +18,17 @@ namespace YOUP_Profile.Controllers
         private static Buisiness Buisiness { get { return lazyBuisiness.Value; } }
 
         /// <summary>
+        /// Retourne l'utilisateur en fonction de son Token
+        /// </summary>
+        /// <param name="id"> Token de connexion</param>
+        /// <returns>Utilisateur </returns>
+        public Utilisateur Get(Guid id)
+        {
+            var u = Buisiness.GetUtilisateurByToken(id);
+            return (u != null) ? u.ToExpo() : null;
+        }
+
+        /// <summary>
         /// Authentifie un utilisateur en recevant un email et un mot de passe
         /// </summary>
         /// <param name="Email">Email de l'utilisateur</param>

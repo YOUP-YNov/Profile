@@ -101,7 +101,7 @@ namespace DAL
                                 Utilisateur.Partenaire,
                                 Utilisateur.Presentation,
                                 Utilisateur.Metier);
-                var u = UtilisateurTA.GetUtilisateurByEmailPass(Utilisateur.AdresseMail, Utilisateur.MotDePasse);
+                var u = UtilisateurTA.GetUtilisateurByEmailPass(Utilisateur.AdresseMail, passHashed);
                 if (u.Rows.Count > 0)
                     return new UtilisateurDAL(u.Rows[0]);
                 else
@@ -473,6 +473,15 @@ namespace DAL
                 delete = Convert.ToBoolean(rep.Rows[0]);
             }
             return delete;
+        }
+
+        public IEnumerable<UtilisateurSmall> GetAllSmallUser()
+        {
+            var rep = UtilisateurSmallTA.GetAllSmallUser();
+            foreach (DataRow row in rep.Rows)
+            {
+                yield return new UtilisateurSmall(row);
+            }
         }
     }
 }

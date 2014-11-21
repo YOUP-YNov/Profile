@@ -218,5 +218,10 @@ namespace Business
         {
             return DataAccess.GetNoteUser(user_id);
         }
+
+        public IEnumerable<UtilisateurSmall> GetAllUserSmall()
+        {
+            return DataAccess.GetAllSmallUser();
+        }
     }
 }
