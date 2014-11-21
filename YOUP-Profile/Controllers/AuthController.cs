@@ -25,35 +25,11 @@ namespace YOUP_Profile.Controllers
         /// </summary>
         /// <param name="id"> Token de connexion</param>
         /// <returns>Utilisateur </returns>
-        public async Task<Utilisateur> Get(Guid id)
+        public async Utilisateur Get(Guid id)
         {
      
             var u = Buisiness.GetUtilisateurByToken(id);
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri("http://youp-recherche.azurewebsites.net/");
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    HttpResponseMessage reponse = await client.GetAsync("add/get_profile?id=" + u.Utilisateur_Id + "&firstname=" + u.Nom + "&lastname=" + u.Prenom + "&pseudo=" + u.Pseudo + "&activity=" + u.Actif + "&age=" + u.DateNaissance + "&sex=" + u.Sexe + "&town=" + u.Ville + "");
-
-                    if (!reponse.IsSuccessStatusCode)
-                        throw new HttpResponseException(reponse);
-                }
-            }
-            catch (Exception)
-            {
-                
-    
-            }
-            //API ElasticSearch
-           
-
             return (u != null) ? u.ToExpo() : null;
-
-
         }
 
         /// <summary>
@@ -66,6 +42,8 @@ namespace YOUP_Profile.Controllers
         public Utilisateur Post(string Email, string Pass, string Device = null)
         {
             var u = Buisiness.GetUtilisateurByEmailPassword(Email, Pass, Device);
+
+
             return (u != null)? u.ToExpo() : null;
         }
         
