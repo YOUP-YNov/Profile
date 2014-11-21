@@ -40,9 +40,28 @@ namespace YOUP_Profile.Controllers
         /// </summary>
         /// <param name="utilisateur"> attend un objet de type Utilisateur pour etre mit à jour</param>
         /// <returns>l'utilisateur mit à jour</returns>
-        public Utilisateur Put(Utilisateur utilisateur)
+        public async Task<Utilisateur> Put(Utilisateur utilisateur)
         {
             var u = Buisiness.InsertUtilisateur(new UtilisateurBusiness((dynamic)utilisateur));
+
+            //API ElasticSearch
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://youp-recherche.azurewebsites.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage reponse = await client.GetAsync("update/get_profile?id=" + u.Utilisateur_Id + "&firstname=" + u.Nom + "&lastname=" + u.Prenom + "&pseudo=" + u.Pseudo + "&activity=" + u.Actif + "&age=" + u.DateNaissance + "&sex=" + u.Sexe + "&town=" + u.Ville + "");
+
+                    if (!reponse.IsSuccessStatusCode)
+                        throw new HttpResponseException(reponse);
+                }
+            }
+            catch (Exception) { }
+
+
             return (u != null) ? u.ToExpo() : null;
         }
 
