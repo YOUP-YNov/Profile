@@ -15,6 +15,10 @@ namespace YOUP_Profile.Controllers
                 new Lazy<Buisiness>(() => new Buisiness());
         private static Buisiness Buisiness { get { return lazyBuisiness.Value; } }
 
+        /// <summary>
+        /// Retourne tout les utilisateurs sous la forme d'un utilisateur small
+        /// </summary>
+        /// <returns>liste d'utilisateur small</returns>
         public IEnumerable<UtilisateurSmall> Get()
         {
             return Buisiness.GetAllUserSmall();

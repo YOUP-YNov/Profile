@@ -607,6 +607,12 @@
             <param name="id">utilisateur_id </param>
             <returns>utilisateur</returns>
         </member>
+        <member name="M:YOUP_Profile.Controllers.UserSmallController.Get">
+            <summary>
+            Retourne tout les utilisateurs sous la forme d'un utilisateur small
+            </summary>
+            <returns>liste d'utilisateur small</returns>
+        </member>
         <member name="M:YOUP_Profile.Controllers.UserSmallController.Get(System.Int32)">
             <summary>
             Recupere un aperçu de l'utilisateur ( id, pseudo, photo )
