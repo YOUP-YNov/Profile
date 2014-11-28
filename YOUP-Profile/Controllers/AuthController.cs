@@ -25,7 +25,7 @@ namespace YOUP_Profile.Controllers
         /// </summary>
         /// <param name="id"> Token de connexion</param>
         /// <returns>Utilisateur </returns>
-        public async Utilisateur Get(Guid id)
+        public Utilisateur Get(Guid id)
         {
      
             var u = Buisiness.GetUtilisateurByToken(id);

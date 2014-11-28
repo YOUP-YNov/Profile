@@ -488,5 +488,26 @@ namespace DAL
                 yield return new UtilisateurSmall(row);
             }
         }
+
+        public IEnumerable<UtilisateurSmall> GetRequestFriend(int utilisateur_id)
+        {
+            var rep = UtilisateurSmallTA.GetFriendRequest(utilisateur_id);
+            foreach (DataRow r in rep.Rows)
+            {
+                yield return new UtilisateurSmall(r);
+            }
+        }
+        public bool AcceptFriendRequest(int utilisateur_id, int friend_id)
+        {
+            try
+            {
+                UtilisateurSmallTA.AccepteFriendRequest(friend_id, utilisateur_id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

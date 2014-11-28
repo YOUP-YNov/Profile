@@ -223,5 +223,15 @@ namespace Business
         {
             return DataAccess.GetAllSmallUser();
         }
+
+        public IEnumerable<UtilisateurSmall> GetFriendRequest(int utilisateur_id)
+        {
+            return DataAccess.GetRequestFriend(utilisateur_id);
+        }
+
+        public bool AcceptFriendRequest(int utilisateur_id, int friend_id)
+        {
+            return DataAccess.AcceptFriendRequest(utilisateur_id, friend_id);
+        }
     }
 }

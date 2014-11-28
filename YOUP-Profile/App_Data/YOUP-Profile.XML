@@ -481,6 +481,21 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:YOUP_Profile.Controllers.AcceptFriendController.Post(System.Int32,System.Int32)">
+            <summary>
+             Creer une demande d'ami 
+            </summary>
+            <param name="utilisateur_id">utilisateur qui fait la demande</param>
+            <param name="friend_id">l'ami que l'on veut demander en ami</param>
+            <returns>true si succée, false si echec</returns>
+        </member>
+        <member name="M:YOUP_Profile.Controllers.AcceptFriendController.Get(System.Int32)">
+            <summary>
+            Recupere les requetes d'amitier en attente
+            </summary>
+            <param name="id">id de l'utilisateur</param>
+            <returns>liste de small user</returns>
+        </member>
         <member name="M:YOUP_Profile.Controllers.AuthController.Get(System.Guid)">
             <summary>
             Retourne l'utilisateur en fonction de son Token
