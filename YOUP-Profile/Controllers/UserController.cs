@@ -42,7 +42,7 @@ namespace YOUP_Profile.Controllers
         /// <returns>l'utilisateur mit à jour</returns>
         public async Task<Utilisateur> Put(Utilisateur utilisateur)
         {
-            var u = Buisiness.InsertUtilisateur(new UtilisateurBusiness((dynamic)utilisateur));
+            var u = Buisiness.UpdateUtilisateur(new UtilisateurBusiness((dynamic)utilisateur));
 
             //API ElasticSearch
             try
